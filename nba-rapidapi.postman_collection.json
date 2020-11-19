@@ -1,0 +1,556 @@
+{
+	"info": {
+		"_postman_id": "0495506d-72d6-4fdd-9422-47fc1e77999b",
+		"name": "nba-rapidapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/teams/league/standard",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "x-rapidapi-host",
+						"value": "api-nba-v1.p.rapidapi.com",
+						"type": "text"
+					},
+					{
+						"key": "useQueryString",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/teams/league/standard",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"teams",
+						"league",
+						"standard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/players/league/standard",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "x-rapidapi-host",
+						"value": "api-nba-v1.p.rapidapi.com",
+						"type": "text"
+					},
+					{
+						"key": "useQueryString",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/players/league/standard",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"players",
+						"league",
+						"standard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/standings/league/year",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "x-rapidapi-host",
+						"value": "api-nba-v1.p.rapidapi.com",
+						"type": "text"
+					},
+					{
+						"key": "useQueryString",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/standings/standard/2018",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"standings",
+						"standard",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/seasons",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "x-rapidapi-host",
+						"value": "api-nba-v1.p.rapidapi.com",
+						"type": "text"
+					},
+					{
+						"key": "useQueryString",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/seasons/",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"seasons",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/players/lastname",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"type": "text",
+						"value": ""
+					},
+					{
+						"key": "x-rapidapi-host",
+						"type": "text",
+						"value": "api-nba-v1.p.rapidapi.com"
+					},
+					{
+						"key": "useQueryString",
+						"type": "text",
+						"value": "true"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/players/lastName/Harden",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"players",
+						"lastName",
+						"Harden"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/players/playerId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "x-rapidapi-host",
+						"value": "api-nba-v1.p.rapidapi.com",
+						"type": "text"
+					},
+					{
+						"key": "useQueryString",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/players/playerId/216",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"players",
+						"playerId",
+						"216"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/leagues",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "x-rapidapi-host",
+						"value": "api-nba-v1.p.rapidapi.com",
+						"type": "text"
+					},
+					{
+						"key": "useQueryString",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/leagues/",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"leagues",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/games/live",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"type": "text",
+						"value": ""
+					},
+					{
+						"key": "x-rapidapi-host",
+						"type": "text",
+						"value": "api-nba-v1.p.rapidapi.com"
+					},
+					{
+						"key": "useQueryString",
+						"type": "text",
+						"value": "true"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/games/live/",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"games",
+						"live",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/gameDetails/id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"type": "text",
+						"value": ""
+					},
+					{
+						"key": "x-rapidapi-host",
+						"type": "text",
+						"value": "api-nba-v1.p.rapidapi.com"
+					},
+					{
+						"key": "useQueryString",
+						"type": "text",
+						"value": "true"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/gameDetails/1000",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"gameDetails",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/teams/teamId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "x-rapidapi-host",
+						"value": "api-nba-v1.p.rapidapi.com",
+						"type": "text"
+					},
+					{
+						"key": "useQueryString",
+						"value": "true",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/teams/teamId/null",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"teams",
+						"teamId",
+						"null"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/teams/city",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"type": "text",
+						"value": ""
+					},
+					{
+						"key": "x-rapidapi-host",
+						"type": "text",
+						"value": "api-nba-v1.p.rapidapi.com"
+					},
+					{
+						"key": "useQueryString",
+						"type": "text",
+						"value": "true"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/teams/city/portland",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"teams",
+						"city",
+						"portland"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/statistics/games/gameId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"type": "text",
+						"value": ""
+					},
+					{
+						"key": "x-rapidapi-host",
+						"type": "text",
+						"value": "api-nba-v1.p.rapidapi.com"
+					},
+					{
+						"key": "useQueryString",
+						"type": "text",
+						"value": "true"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/statistics/games/gameId/1000",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"statistics",
+						"games",
+						"gameId",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/statistics/players/gameId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"type": "text",
+						"value": ""
+					},
+					{
+						"key": "x-rapidapi-host",
+						"type": "text",
+						"value": "api-nba-v1.p.rapidapi.com"
+					},
+					{
+						"key": "useQueryString",
+						"type": "text",
+						"value": "true"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/statistics/players/gameId/1000",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"statistics",
+						"players",
+						"gameId",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/statistics/players/playerId",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-rapidapi-key",
+						"type": "text",
+						"value": ""
+					},
+					{
+						"key": "x-rapidapi-host",
+						"type": "text",
+						"value": "api-nba-v1.p.rapidapi.com"
+					},
+					{
+						"key": "useQueryString",
+						"type": "text",
+						"value": "true"
+					}
+				],
+				"url": {
+					"raw": "https://api-nba-v1.p.rapidapi.com/statistics/players/playerId/216",
+					"protocol": "https",
+					"host": [
+						"api-nba-v1",
+						"p",
+						"rapidapi",
+						"com"
+					],
+					"path": [
+						"statistics",
+						"players",
+						"playerId",
+						"216"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
