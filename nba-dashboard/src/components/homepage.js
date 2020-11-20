@@ -20,7 +20,8 @@ export default class Homepage extends Component {
 
 
     //async function that gets page info from api
-    let loadResponse = async () => {
+    // let loadResponse = async () => {
+
         // let response = await fetch(url, 
         //   {"method": "GET",
         //    "headers":
@@ -36,9 +37,20 @@ export default class Homepage extends Component {
         //     console.log(err);
         //   })
 
-    }
+    // }
 
-    loadResponse();
+    // loadResponse();
+
+    fetch("/team_stats")
+      .then((res) => res.json())
+      .then((data) => {
+
+        this.setState({ isLoaded: true, data: data })
+        console.log('second', this.state.data);
+    })
+      .catch((err) => console.log("Request failed", err));
+
+
 }
 
   load_data = () => {
