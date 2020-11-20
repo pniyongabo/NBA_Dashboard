@@ -9,40 +9,20 @@ const port = process.env.PORT || 8000;
 
 app.use(cors());
 
+var mockDataController = require('./mockDataController');
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+    next();
+});
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 });
 
 app.get('/team_stats', (req, res) => {
-  // fetch('https://store.steampowered.com/stats/')
-  //   .then((res) => res.text())
-  //   .then((html) => {
-  //     console.log(html);
-  //     const $ = cheerio.load(html);
-
-  //     const data = { updated: $(".statsTopSmall").text(), apps: [] };
-
-  //     $(".player_count_row").each((i, elem) => {
-  //       const current = $(elem).find(".currentServers").first().text();
-  //       const peak = $(elem).find(".currentServers").last().text();
-  //       const appid = $(elem).find(".gameLink").attr("href").split("/")[4];
-  //       const name = $(elem).find(".gameLink").text();
-
-  //       const obj = {
-  //         current,
-  //         peak,
-  //         appid,
-  //         name,
-  //       };
-
-  //       data.apps.push(obj);
-  //     });
-
-  //     res.json(data);
-
-  //   })
-  //   .catch((err) => console.log("Request failed", err));
-////////////////////////////////////////////////////////////////////////////////////////////
 
   fetch('https://basketball.realgm.com/nba/team-stats')
     .then((res)=>res.text())
@@ -72,6 +52,11 @@ app.get('/team_stats', (req, res) => {
     
 }); 
 
+app.get('/teams/league/standard', mockDataController.getTeamsLeagueStandard);
+
+app.get('/players/league/standard', mockDataController.getPlayersLeagueStandard);
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
 });
+

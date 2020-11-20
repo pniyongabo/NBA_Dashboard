@@ -3,6 +3,7 @@ import './App.css';
 import Homepage from './components/homepage';
 import Teams from './components/teams';
 import Players from './components/players';
+import Player from './components/player';
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
@@ -34,6 +35,11 @@ function App() {
           path="/players"
           exact
           render={(props) => <Players /> }
+        />
+        <Route
+          path="/players/playerId/:id"
+          exact
+          render={(props) => <Player /> }
         />
 
         <Route render={()=> <Redirect to="/" />} />
