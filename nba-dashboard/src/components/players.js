@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Doughnut} from 'react-chartjs-2';
+import {Link} from 'react-router-dom';
 
 
 export default class Players extends Component {
@@ -31,21 +32,30 @@ export default class Players extends Component {
   
   load_data = () => {
     return(
-         <table>
+         <table id="players">
            <thead>
               <tr>
-                 <th>First Name</th>
+                 <th>Id</th>
+                 <th>First Name</th> 
                  <th>Last Name</th>
-                 <th>playerId</th>
+                 <th>Team Id</th>
+                 <th>Joined NBA</th>
               </tr>
            </thead>
            <tbody>
            {this.state.data.api.players.map((item, i) => {
               return (
               <tr key={i}>
-                <td>{item.firstName}</td>
-                <td>{item.lastName}</td>
                 <td>{item.playerId}</td>
+                <td><Link to={{
+                  pathname: '/players/playerId/' + item.playerId,
+                  state: {
+                    data: item
+                  }
+                }}> {item.firstName} </Link></td>
+                <td>{item.lastName}</td>
+                <td>{item.teamId}</td>
+                <td>{item.startNba}</td>
               </tr>
               )
            })}
@@ -67,7 +77,7 @@ export default class Players extends Component {
     }
 
     return (
-      <div>
+      <div id="title">
           <h1>
             NBA Players
           </h1>
