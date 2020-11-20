@@ -29,22 +29,20 @@ app.get('/team_stats', (req, res) => {
     .then((html) => {
       // console.log(html);
       const $ = cheerio.load(html);
-      let all_data = [];
+      let all_data = {};
       let header_arr = [];
 
       $(".tablesaw").find("thead").first().find("th").each((i, col_header) => {
         header_arr.push($(col_header).text());
       })
-      all_data.push(header_arr);
 
       $(".tablesaw").find("tbody").first().find("tr").each((i, row) => {
-        let team_arr = [];
+        let team_arr = {};
         $(row).find('td').each((i, item) => {
-          team_arr.push($(item).text());
+          team_arr[header_arr[i]] = $(item).text();
         })
-        all_data.push(team_arr);
+        all_data[team_arr['Team']] = team_arr;
       })
-      console.log(all_data);
 
       res.json(all_data);
     })
