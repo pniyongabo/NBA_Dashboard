@@ -36,6 +36,32 @@ app.get('/team_stats', (req, res) => {
         header_arr.push($(col_header).text());
       })
 
+      let glossary = {'#': 'Rank', 
+      'Team': 'Team', 
+      'GP': 'Games Played',
+      'MPG': 'Minutes Per Game', 
+      'FGM': 'Field Goals Made', 
+      'FGA': 'Field Goals Attempted', 
+      'FG%': 'Field Goal Percentage', 
+      '3PM': 'Three-Point Field Goals Made', 
+      '3PA': 'Three-Point Field Goals Attempted', 
+      '3P%': 'Three-Point Field Goal Percentage', 
+      'FTM': 'Free Throws Made', 
+      'FTA' : 'Free Throws Attempted',
+      'FT%': 'Free Throw Percentage', 
+      'TOV': 'Turnovers', 
+      'PF': 'Personal Fouls',
+      'ORB': 'Offensive Rebounds', 
+      'DRB': 'Defensive Rebounds', 
+      'RPG': 'Rebounds Per Game', 
+      'APG': 'Assists Per Game', 
+      'SPG' : 'Steals Per Game', 
+      'BPG': 'Blocks Per Game', 
+      'PPG': 'Points Per Game',
+      };
+      
+      all_data['glossary'] = glossary;
+
       $(".tablesaw").find("tbody").first().find("tr").each((i, row) => {
         let team_arr = {};
         $(row).find('td').each((i, item) => {
