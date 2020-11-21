@@ -77,7 +77,7 @@ export default class Players extends Component {
     }
 
     return (
-      <div id="title">
+      <div className="center-align">
           <h1>
             NBA Players
           </h1>

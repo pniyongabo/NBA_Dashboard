@@ -39,7 +39,10 @@ function App() {
         <Route
           path="/players/playerId/:id"
           exact
-          render={(props) => <Player /> }
+          // render={(props) => <Player /> }
+          render={(props) => (
+            <Player {...props} />
+          )}
         />
 
         <Route render={()=> <Redirect to="/" />} />
