@@ -17,3 +17,10 @@ exports.getPlayersLeagueStandard = function (request, response) {
   var data = getJsonData(basePathToData, 'players_league_standard.json');
   return response.send(data);
 };
+
+exports.getTeamsMappings = function (request, response) {
+  var data = getJsonData(basePathToData, 'teams_league_standard.json');
+  var teams = data.api.teams.reduce((map, team) => (map[team.teamId] = team.fullName, map), {})
+  // var teams = data.api.teams.map(x => ({[x.teamId] : x.fullName})); // as array of {teamId: fullName} objects
+  return response.send(teams);
+};
