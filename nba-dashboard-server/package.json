@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/andrewbespaly/NBA_Dashboard#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "cheerio": "^1.0.0-rc.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "path": "^0.12.7"
   }
 }
