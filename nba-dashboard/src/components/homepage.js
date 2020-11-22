@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import {Doughnut} from 'react-chartjs-2';
+// import { LineChart, Line } from 'recharts';
+
+
+// import React, { PureComponent } from 'react';
+import {
+  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+} from 'recharts';
+
 require("dotenv").config();
 
 
@@ -43,10 +51,28 @@ export default class Homepage extends Component {
 
     fetch("/team_stats")
       .then((res) => res.json())
-      .then((data) => {
+      .then((team_data) => {
 
-        this.setState({ isLoaded: true, data: data })
-        console.log('second', this.state.data);
+        function compare_team_names(a, b){
+          let team_a = a.Team;
+          let team_b = b.Team;
+          let comparison = 0;
+          if(a.Team > b.Team){
+            comparison = 1;
+          } else if(a.Team < b.Team) {
+            comparison = -1;
+          }
+          return comparison;
+        }
+
+        team_data.team_stats.sort(compare_team_names);
+
+        this.setState({ isLoaded: true, data: team_data })
+        console.log(this.state.data);
+
+
+
+
     })
       .catch((err) => console.log("Request failed", err));
 
@@ -85,7 +111,22 @@ export default class Homepage extends Component {
           <h1>
             NBA Dashboard
           </h1>
-          
+          {/* <LineChart width={500} height={500} data={this.state.data.team_stats}>
+            <Line type="monotone" dataKey="PPG" stroke="#8884d8" />
+          </LineChart> */}
+
+          <BarChart
+            width={700}
+            height={300}
+            data={this.state.data.team_stats}
+          >
+            <XAxis dataKey={"Team"} />
+            <YAxis domain={[dataMin => (Math.floor(dataMin)), dataMax => (Math.ceil(dataMax))]} />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="PPG" fill="#8884d8" />
+
+          </BarChart>
 
           {/* {this.load_data(this.state.data)} */}
 

@@ -25,6 +25,7 @@ app.get('/team_stats', (req, res) => {
       const $ = cheerio.load(html);
       let all_data = {};
       let header_arr = [];
+      let team_stats = [];
 
       $(".tablesaw").find("thead").first().find("th").each((i, col_header) => {
         header_arr.push($(col_header).text());
@@ -57,12 +58,15 @@ app.get('/team_stats', (req, res) => {
       all_data['glossary'] = glossary;
 
       $(".tablesaw").find("tbody").first().find("tr").each((i, row) => {
+        
         let team_arr = {};
+        
         $(row).find('td').each((i, item) => {
           team_arr[header_arr[i]] = $(item).text();
         })
-        all_data[team_arr['Team']] = team_arr;
+        team_stats.push(team_arr);
       })
+      all_data['team_stats'] = team_stats;
 
       res.json(all_data);
     })
