@@ -28,7 +28,7 @@ export default class Homepage extends Component {
 
 
     //async function that gets page info from api
-    // let loadResponse = async () => {
+    let loadResponse = async () => {
 
         // let response = await fetch(url, 
         //   {"method": "GET",
@@ -49,13 +49,13 @@ export default class Homepage extends Component {
 
     // loadResponse();
 
-    fetch("/team_stats")
+    await fetch("/team_stats")
       .then((res) => res.json())
       .then((team_data) => {
 
         function compare_team_names(a, b){
-          let team_a = a.Team;
-          let team_b = b.Team;
+          // let team_a = a.Team;
+          // let team_b = b.Team;
           let comparison = 0;
           if(a.Team > b.Team){
             comparison = 1;
@@ -69,13 +69,32 @@ export default class Homepage extends Component {
 
         this.setState({ isLoaded: true, data: team_data })
         console.log(this.state.data);
-
-
-
-
     })
       .catch((err) => console.log("Request failed", err));
 
+    await fetch("/teams/league/standard")
+      .then((res) => res.json())
+      .then((team_names) => {
+        console.log(team_names.api.teams[0]);
+        let temp_data = this.state.data;
+        // console.log('yo', temp_data.team_stats)
+        team_names.api.teams.forEach(api_team => {
+          //check if api_team name exists in temp data, then put it there if it does
+          let found_city = temp_data.team_stats.find(e => {
+            if(e.Team === api_team.city){ return true}
+            if(e.Team === "L.A. Clippers" && api_team.city === "LA"){return true}
+            if(e.Team === "L.A. Lakers" && api_team.city === "Los Angeles"){return true}
+          });
+          if(found_city !== undefined){
+            found_city['team_info'] = api_team;
+          }
+        })
+
+
+      })
+
+    }
+    loadResponse();
 
 }
 
@@ -119,12 +138,33 @@ export default class Homepage extends Component {
             width={700}
             height={300}
             data={this.state.data.team_stats}
+
           >
             <XAxis dataKey={"Team"} />
             <YAxis domain={[dataMin => (Math.floor(dataMin)), dataMax => (Math.ceil(dataMax))]} />
             <Tooltip />
             <Legend />
             <Bar dataKey="PPG" fill="#8884d8" />
+
+          </BarChart>
+
+
+          <BarChart
+            width={1800}
+            height={300}
+            data={this.state.data.team_stats}
+            // barCategoryGap={10}
+            // barGap={1}
+            barSize={10}
+
+          >
+            <XAxis dataKey={"Team"} />
+            <YAxis domain={[dataMin => (Math.floor(dataMin)), dataMax => (Math.ceil(dataMax))]} />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="FGA" stackId="a" fill="#FF2222" />
+            <Bar dataKey="FGM" stackId="a" fill="#22FF22" />
+            <Bar dataKey="FG%" stackId="a" fill="#2222FF" />
 
           </BarChart>
 
