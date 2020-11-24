@@ -5,6 +5,7 @@ import Teams from './components/teams';
 import Players from './components/players';
 import Player from './components/player';
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Switch,
