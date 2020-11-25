@@ -72,7 +72,7 @@ export default class Player extends Component {
     }
 
     return (
-      <div className="center-align">
+      <div className="align-center">
           {this.load_data(this.state.data)}
       </div>
     );

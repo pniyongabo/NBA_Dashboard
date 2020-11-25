@@ -37,21 +37,37 @@ export default class Teams extends Component {
 
     }
 
-    // loadResponse();
+    loadResponse();
 }
 
-load_data = () => {
 
-  return Object.keys(this.state.data.api.teams).map((obj, i) => {
-    if(this.state.data.api.teams[obj].allStar === "0" && this.state.data.api.teams[obj].leagues.standard.divName !== ""){
-      return (
-          <div key={obj}>
-              <p>id is: {this.state.data.api.teams[obj].teamId}</p>
-              <p>name is: {this.state.data.api.teams[obj].fullName}</p>
-          </div>
-      )
-    }
-  })
+load_data = () => {
+  return(
+       <table className="large-tables" id="teams">
+         <thead>
+            <tr>
+               <th>Name</th> 
+               <th>Abbr</th>
+               <th>Division</th>
+               <th>Conference</th>
+            </tr>
+         </thead>
+         <tbody>
+         {this.state.data.api.teams.map((item, i) => {
+           if (item.nbaFranchise == "1" && item.city != "Home" && item.city != "Away"){ // only dispaly NBA Teams
+            return (
+            <tr key={i}>
+              <td>{item.fullName}</td>
+              <td>{item.shortName}</td>
+              <td>{item.leagues.standard.divName}</td>
+              <td>{item.leagues.standard.confName}</td>
+            </tr>
+            )
+         }
+       })}
+         </tbody>
+       </table>
+     )
 
 }
     
@@ -67,7 +83,7 @@ load_data = () => {
     }
 
     return (
-      <div>
+      <div className="align-center">
           <h1>
             NBA Teams
           </h1>
