@@ -32,7 +32,7 @@ export default class Players extends Component {
   
   load_data = () => {
     return(
-         <table id="players">
+         <table className="large-tables" id="players">
            <thead>
               <tr>
                  <th>Id</th>
@@ -77,7 +77,7 @@ export default class Players extends Component {
     }
 
     return (
-      <div className="center-align">
+      <div className="align-center">
           <h1>
             NBA Players
           </h1>
