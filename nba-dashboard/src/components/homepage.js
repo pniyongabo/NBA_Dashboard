@@ -16,37 +16,6 @@ require("dotenv").config();
 
 
 
-
-const renderCustomizedLabel = (props) => {
-  const {
-    x, y, width, height, value,
-  } = props;
-  const radius = 10;
-
-  return (
-    <img src={value}  />
-    // <g>
-    //   <circle cx={x + width / 2} cy={y - radius} r={radius} fill="#8884d8" />
-    //   <text x={x + width / 2} y={y - radius} fill="#FF2243" textAnchor="middle" dominantBaseline="middle">
-    //     {value}
-    //   </text> 
-    //   <img src={value}  />
-    // </g>
-  );
-};
-
-
-
-
-const getCorrectColor = (team_shortName) => {
-  return getMainColor(team_shortName).hex;
-}
-
-
-
-
-
-
 export default class Homepage extends Component {
   constructor(props) {
     super(props);
@@ -90,8 +59,6 @@ export default class Homepage extends Component {
       .then((team_data) => {
 
         function compare_team_names(a, b){
-          // let team_a = a.Team;
-          // let team_b = b.Team;
           let comparison = 0;
           if(a.Team > b.Team){
             comparison = 1;
@@ -158,46 +125,35 @@ export default class Homepage extends Component {
           <Tabs defaultActiveKey="ppg" id="uncontrolled-tab-example">
 
             <Tab eventKey="ppg" title="Points Per Game">
-          
-            {/* </Tab>
-            </Tabs> */}
 
-            <BarChart
-              width={1700}
-              height={400}
-              data={this.state.data.team_stats}
-
-            >
-              {/* <XAxis type="category" dataKey={"city"} tickLine={false} /> */}
-              <XAxis type="category" interval={0} dataKey={"fullName"} tickLine={false} hide/>
-              <YAxis domain={[dataMin => (Math.floor(dataMin)), dataMax => (Math.ceil(dataMax))]} />
-              {/* <YAxis domain={['dataMin', 'dataMax']} /> */}
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="PPG" >
-              {
-                this.state.data.team_stats.map((entry, index) => {
-
-                  //sets the background color of each bar to the main team color, and secondary color to font and border color
-                  return <Cell fill={getMainColor(entry.shortName).hex} stroke={getSecondaryColor(entry.shortName).hex}/>;
-                })
-              }
-              
-                <LabelList dataKey="shortName" />
-                
-              </Bar>
-
-            </BarChart>
+              <GraphCreation 
+                all_team_data={this.state.data} 
+                type_of_graph={"bar"} 
+                stat_to_graph={"PPG"}
+              />
 
             </Tab>
             <Tab eventKey="fg" title="Field Goals">
-              <GraphCreation all_team_data={this.state.data}/>
+              <GraphCreation 
+                all_team_data={this.state.data} 
+                type_of_graph={"doublebar"} 
+                stat_to_graph={"FGA FGM"}
+              />
+              
             </Tab>
             <Tab eventKey="3p" title="Three Pointers">
-
+              <GraphCreation 
+                all_team_data={this.state.data} 
+                type_of_graph={"doublebar"} 
+                stat_to_graph={"3PA 3PM"}
+              />
             </Tab>
             <Tab eventKey="ft" title="Free Throws">
-
+              <GraphCreation 
+                all_team_data={this.state.data} 
+                type_of_graph={"doublebar"} 
+                stat_to_graph={"FTA FTM"}
+              />
             </Tab>
             
           </Tabs>
