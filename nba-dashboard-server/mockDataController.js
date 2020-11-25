@@ -18,6 +18,21 @@ exports.getPlayersLeagueStandard = function (request, response) {
   return response.send(data);
 };
 
+exports.getLiveGames = function (request, response) {
+  var data = getJsonData(basePathToData, 'players_live.json');
+  return response.send(data);
+};
+
+exports.getSchedulesAndResults = function (request, response) {
+  var data = getJsonData(basePathToData, 'games_league_standard_2019.json');
+  return response.send(data);
+};
+
+exports.getStandings = function (request, response) {
+  var data = getJsonData(basePathToData, 'standings_league_standard.json');
+  return response.send(data);
+};
+
 exports.getTeamsMappings = function (request, response) {
   var data = getJsonData(basePathToData, 'teams_league_standard.json');
   var teams = data.api.teams.reduce((map, team) => (map[team.teamId] = team.fullName, map), {})

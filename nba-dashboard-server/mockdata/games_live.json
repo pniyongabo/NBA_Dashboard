@@ -1,0 +1,67 @@
+{
+    "api": {
+        "status": 200,
+        "message": "GET games/live",
+        "results": 0,
+        "filters": [
+            "seasonYear",
+            "league",
+            "gameId",
+            "teamId",
+            "date",
+            "live"
+        ],
+        "games": [
+          {
+            "seasonYear":"2020",
+            "league":"standard",
+            "gameId":"0011800069",
+            "seasonStageId":"1",
+            "statusNum":"2",
+            "startTimeUTC":"2020-11-12T23:00:00.000Z",
+            "endTimeUTC":"",
+            "arena":"Amway Center",
+            "city":"Orlando",
+            "country":"USA",
+            "infos":"Preseason",
+            "vTeam":{
+              "teamId":"38"
+              "score":{
+                "points":"4"
+              }
+            },
+            "hTeam":{
+              "teamId":"28"
+              "score":{
+                "points":"5"
+              }
+            }
+          },
+          {
+            "seasonYear":"2020",
+            "league":"standard",
+            "gameId":"0011800070",
+            "seasonStageId":"1",
+            "statusNum":"2",
+            "startTimeUTC":"2020-11-12T23:00:00.000Z",
+            "endTimeUTC":"",
+            "arena":"Capital One Arena",
+            "city":"Washington",
+            "country":"USA",
+            "infos":"Preseason",
+            "vTeam":{
+              "teamId":"15018"
+              "score":{
+                "points":"1"
+              }
+            },
+            "hTeam":{
+              "teamId":"1610612764"
+              "score":{
+                "points":"2"
+              }
+            }
+          }
+        ]
+    }
+}

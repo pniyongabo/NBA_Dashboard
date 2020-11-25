@@ -80,6 +80,12 @@ app.get('/players/league/standard', mockDataController.getPlayersLeagueStandard)
 
 app.get('/teams/mappings', mockDataController.getTeamsMappings);
 
+app.get('/games/live', mockDataController.getLiveGames);
+
+app.get('/games/league/standard/2019', mockDataController.getSchedulesAndResults);
+
+app.get('/standings/league/standard', mockDataController.getStandings);
+
 app.get('/teams/mappings/:teamId', function (req, res) {
     return res.send(helperDataController.getTeamFullName(req.params.teamId));
 });

@@ -15,7 +15,8 @@ export default class Teams extends Component {
 
   componentDidMount(){
 
-    const url = 'https://api-nba-v1.p.rapidapi.com/teams/league/standard';
+    // const url = 'https://api-nba-v1.p.rapidapi.com/teams/league/standard';
+    const url = 'http://localhost:8000/teams/league/standard';
 
 
     // async function that gets teams list and header info from api

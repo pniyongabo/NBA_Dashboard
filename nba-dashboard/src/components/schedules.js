@@ -85,7 +85,7 @@ load_data = () => {
     return (
       <div className="align-center">
           <h1>
-            NBA Teams
+            Schedules and Results
           </h1>
           
 
