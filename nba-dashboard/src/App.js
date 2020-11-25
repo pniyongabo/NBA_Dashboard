@@ -4,6 +4,10 @@ import Homepage from './components/homepage';
 import Teams from './components/teams';
 import Players from './components/players';
 import Player from './components/player';
+import Live from './components/live';
+import Standings from './components/standings';
+import Schedules from './components/schedules';
+import Team from './components/team';
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -33,6 +37,11 @@ function App() {
           render={(props) => <Teams /> }
         />
         <Route
+          path="/team"
+          exact
+          render={(props) => <Team /> }
+        />
+        <Route
           path="/players"
           exact
           render={(props) => <Players /> }
@@ -44,6 +53,21 @@ function App() {
           render={(props) => (
             <Player {...props} />
           )}
+        />
+        <Route
+          path="/live"
+          exact
+          render={(props) => <Live /> }
+        />
+        <Route
+          path="/standings"
+          exact
+          render={(props) => <Standings /> }
+        />
+        <Route
+          path="/schedules"
+          exact
+          render={(props) => <Schedules /> }
         />
 
         <Route render={()=> <Redirect to="/" />} />

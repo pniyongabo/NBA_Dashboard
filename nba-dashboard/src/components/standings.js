@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Doughnut} from 'react-chartjs-2';
-require("dotenv").config();
+// import {Doughnut} from 'react-chartjs-2';
+// require("dotenv").config();
 
-export default class Teams extends Component {
+export default class Standings extends Component {
  
   constructor(props) {
     super(props);

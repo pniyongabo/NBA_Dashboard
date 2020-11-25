@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Doughnut} from 'react-chartjs-2';
+// import {Doughnut} from 'react-chartjs-2';
 
 
-export default class Player extends Component {
+export default class Team extends Component {
   
   constructor(props) {
     super(props);

@@ -25,13 +25,13 @@
             "country":"USA",
             "infos":"Preseason",
             "vTeam":{
-              "teamId":"38"
+              "teamId":"38",
               "score":{
                 "points":"4"
               }
             },
             "hTeam":{
-              "teamId":"28"
+              "teamId":"28",
               "score":{
                 "points":"5"
               }
@@ -50,15 +50,15 @@
             "country":"USA",
             "infos":"Preseason",
             "vTeam":{
-              "teamId":"15018"
+              "teamId":"2",
               "score":{
-                "points":"1"
+                "points":"0"
               }
             },
             "hTeam":{
-              "teamId":"1610612764"
+              "teamId":"1",
               "score":{
-                "points":"2"
+                "points":"0"
               }
             }
           }

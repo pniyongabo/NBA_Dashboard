@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Doughnut} from 'react-chartjs-2';
+// import {Doughnut} from 'react-chartjs-2';
 
 
 export default class Player extends Component {
@@ -12,7 +12,7 @@ export default class Player extends Component {
   }
   
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     
     this.getTeamFullName(this.props.location.state.data.teamId)
       .then(res => this.setState({ 

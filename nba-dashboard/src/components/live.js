@@ -1,69 +1,103 @@
 import React, { Component } from 'react';
-import {Doughnut} from 'react-chartjs-2';
-require("dotenv").config();
+// import {Doughnut} from 'react-chartjs-2';
+// require("dotenv").config();
 
-export default class Teams extends Component {
+export default class Live extends Component {
  
   constructor(props) {
     super(props);
     this.state = {
       isLoaded: false,
-      data: {},
+      liveGames: {},
+      teamsMappings: {}
     }
   }
   
 
-  componentDidMount(){
+  componentDidMount() {
+    
+    this.getLiveGames()
+      .then(res1 => this.setState({ 
+        liveGames: res1
+      }))
+      .then(this.getTeamsMappings()
+        .then(res2 => this.setState({ 
+          teamsMappings: res2,
+          isLoaded: true,
+        })))
+      .catch(err => console.log(err));
+    
+  }
 
-    const url = 'https://api-nba-v1.p.rapidapi.com/teams/league/standard';
 
+getLiveGames = async () => {
+    // direct url: 'https://api-nba-v1.p.rapidapi.com/games/live';
+    const response = await fetch('http://localhost:8000/games/live', 
+      {"method": "GET",
+       "headers":
+       {
+        "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+        }
+      });
+      
+      const body = await response.json();
+      
+      if (response.status !== 200) {
+        return {}; 
+      }
+      
+      return body;
 
-    // async function that gets teams list and header info from api
-    let loadResponse = async () => {
-        let response = await fetch(url, 
-          {"method": "GET",
-           "headers":
-           {
-            "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
-            "x-rapidapi-key": process.env.REACT_APP_API_KEY,
-            }
-          }).then(response=>response.json())
-            .then(json=>{
-            console.log(json);
-            this.setState({data: json, isLoaded: true})
-          }).catch(err=>{
-            console.log(err);
-          })
+}
 
-    }
+getTeamsMappings = async () => {
+    // direct url: 'https://api-nba-v1.p.rapidapi.com/games/live';
+    const response = await fetch('http://localhost:8000/teams/mappings', 
+      {"method": "GET",
+       "headers":
+       {
+        "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+        }
+      });
+      
+      const body = await response.json();
+      
+      if (response.status !== 200) {
+        return {}; 
+      }
+      
+      return body;
 
-    loadResponse();
 }
 
 
 load_data = () => {
   return(
-       <table className="large-tables" id="teams">
+       <table className="large-tables" id="liveGames">
          <thead>
             <tr>
-               <th>Name</th> 
-               <th>Abbr</th>
-               <th>Division</th>
-               <th>Conference</th>
+               <th>Current Score</th>
+               <th>Arena</th>
+               <th>City</th>
             </tr>
          </thead>
          <tbody>
-         {this.state.data.api.teams.map((item, i) => {
-           if (item.nbaFranchise == "1" && item.city != "Home" && item.city != "Away"){ // only dispaly NBA Teams
+         {this.state.liveGames.api.games.map((item, i) => {
+           const homeTeamId = item.hTeam.teamId;
+           const awayTeamId = item.vTeam.teamId;
+           const homeTeamScore = item.hTeam.score.points;
+           const awayTeamScore = item.vTeam.score.points;
+           const homeTeamName = this.state.teamsMappings[homeTeamId];
+           const awayTeamName = this.state.teamsMappings[awayTeamId];
             return (
             <tr key={i}>
-              <td>{item.fullName}</td>
-              <td>{item.shortName}</td>
-              <td>{item.leagues.standard.divName}</td>
-              <td>{item.leagues.standard.confName}</td>
+              <td>{awayTeamName} {awayTeamScore} - {homeTeamScore} {homeTeamName}</td>
+              <td>{item.arena}</td>
+              <td>{item.city}</td>
             </tr>
             )
-         }
        })}
          </tbody>
        </table>
@@ -76,7 +110,7 @@ load_data = () => {
       return (
         <div>
             <h1>
-              Loading teams data ...
+              Loading Live Games Data ...
             </h1>
         </div>
       )
@@ -85,7 +119,7 @@ load_data = () => {
     return (
       <div className="align-center">
           <h1>
-            NBA Teams
+            Live Games
           </h1>
           
 

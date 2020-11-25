@@ -19,7 +19,7 @@ exports.getPlayersLeagueStandard = function (request, response) {
 };
 
 exports.getLiveGames = function (request, response) {
-  var data = getJsonData(basePathToData, 'players_live.json');
+  var data = getJsonData(basePathToData, 'games_live.json');
   return response.send(data);
 };
 
