@@ -39,9 +39,13 @@ export default class Player extends Component {
 
   
   load_data = () => {
-    console.log(this.state.data);
-    console.log(this.state.playerId);
+    const playerImageURL = "https://nba-players.herokuapp.com/players/" + this.state.data.lastName + "/" + this.state.data.firstName;
+    const playerImageALT = "Headshot image of Nba Player " + this.state.data.lastName + " " + this.state.data.firstName;
     return(
+      <div>
+        <div>
+        <img src={playerImageURL} alt={playerImageALT}/>
+        </div>
         <div>
            <h1>{this.state.data.firstName} {this.state.data.lastName}</h1>
            <p>Weight (kg) : {this.state.data.weightInKilograms}</p>
@@ -50,10 +54,7 @@ export default class Player extends Component {
            <p>College Team: {this.state.data.collegeName}</p>
            <p>Current Team: {this.state.teamFullName}</p>
         </div>
-        /*
-        1. add profile photo from external API
-        2. fetch team name from local id-name mapping json file : DONE
-        */
+      </div>
        )
        
 
