@@ -121,6 +121,7 @@ load_data = () => {
           <h1>
             Live Games
           </h1>
+          <p>There are no live games in progress. This is a proof-of-concept of how it would look.</p>
           
 
           {this.load_data(this.state.data)}
