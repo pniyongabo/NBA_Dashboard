@@ -29,7 +29,7 @@ exports.getSchedulesAndResults = function (request, response) {
 };
 
 exports.getStandings = function (request, response) {
-  var data = getJsonData(basePathToData, 'standings_league_standard.json');
+  var data = getJsonData(basePathToData, 'standings_league_standard_2019.json');
   return response.send(data);
 };
 

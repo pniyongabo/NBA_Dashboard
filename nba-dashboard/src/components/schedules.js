@@ -60,8 +60,6 @@ load_data = () => {
            const awayTeamShortName = item.vTeam.shortName;
            const homeTeamScore = item.hTeam.score.points;
            const awayTeamScore = item.vTeam.score.points;
-           //const homeTeamName = this.state.teamsMappings[homeTeamId];
-           //const awayTeamName = this.state.teamsMappings[awayTeamId];
             return (
             <tr key={i}>
               <td>{awayTeamShortName} {awayTeamScore} - {homeTeamScore} {homeTeamShortName}</td>
