@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './team.css';
 // import {Doughnut} from 'react-chartjs-2';
 
 
@@ -7,52 +8,51 @@ export default class Team extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoaded: false,
+      isLoaded: false
     }
   }
   
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     
-    this.getTeamFullName(this.props.location.state.data.teamId)
-      .then(res => this.setState({ 
-        data: this.props.location.state.data, 
-        playerId: this.props.match.params.id, 
-        isLoaded: true,
-        teamFullName: res
-      }))
-      .catch(err => console.log(err));
+    //this.getTeamFullName(this.props.location.state.data.teamId)
+      //.then(res => 
+      this.setState({ 
+        team: this.props.location.state.data, 
+        teamShortName: this.props.match.params.id, 
+        isLoaded: true
+      })
+      //)
+      //.catch(err => console.log(err));
     
   }
   
-  getTeamFullName = async (teamId) => {
-    const response = await fetch('http://localhost:8000/teams/mappings/' + teamId);
-    const body = await response.text();
-
-    if (response.status !== 200) {
-      return ""; 
-    }
-    
-    return body;
-  };
+  // getTeamFullName = async (teamId) => {
+  //   const response = await fetch('http://localhost:8000/teams/mappings/' + teamId);
+  //   const body = await response.text();
+  // 
+  //   if (response.status !== 200) {
+  //     return ""; 
+  //   }
+  // 
+  //   return body;
+  // };
   
 
   
   load_data = () => {
-    const playerImageURL = "https://nba-players.herokuapp.com/players/" + this.state.data.lastName + "/" + this.state.data.firstName;
-    const playerImageALT = "Headshot image of Nba Player " + this.state.data.lastName + " " + this.state.data.firstName;
+    const teamLogoALT = "Logo image of " + this.state.team.fullName;
     return(
       <div>
         <div>
-        <img src={playerImageURL} alt={playerImageALT}/>
+        <img className="team-logo" src={this.state.team.logo} alt={teamLogoALT}/>
         </div>
         <div>
-           <h1>{this.state.data.firstName} {this.state.data.lastName}</h1>
-           <p>Weight (kg) : {this.state.data.weightInKilograms}</p>
-           <p>Height (m): {this.state.data.heightInMeters}</p>
-           <p>Born: {this.state.data.dateOfBirth}</p>
-           <p>College Team: {this.state.data.collegeName}</p>
-           <p>Current Team: {this.state.teamFullName}</p>
+           <h1>{this.state.team.fullName}</h1>
+           <p>ShortName: {this.state.team.shortName}</p>
+           <p>NickName: {this.state.team.nickname}</p>
+           <p>Conference: {this.state.team.leagues.standard.confName}</p>
+           <p>Divison: {this.state.team.leagues.standard.divName}</p>
         </div>
       </div>
        )

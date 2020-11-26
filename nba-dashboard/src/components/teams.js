@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import {Doughnut} from 'react-chartjs-2';
-// require("dotenv").config();
+import {Link} from 'react-router-dom';
 
 export default class Teams extends Component {
  
@@ -58,7 +57,12 @@ load_data = () => {
            if (item.nbaFranchise === "1" && item.city !== "Home" && item.city !== "Away"){ // only dispaly NBA Teams
             return (
             <tr key={i}>
-              <td>{item.fullName}</td>
+              <td><Link to={{
+                pathname: '/teams/teamId/' + item.teamId,
+                state: {
+                  data: item
+                }
+              }}> {item.fullName} </Link></td>
               <td>{item.shortName}</td>
               <td>{item.leagues.standard.divName}</td>
               <td>{item.leagues.standard.confName}</td>

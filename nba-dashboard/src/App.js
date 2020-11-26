@@ -37,9 +37,11 @@ function App() {
           render={(props) => <Teams /> }
         />
         <Route
-          path="/team"
+          path="/teams/teamId/:id"
           exact
-          render={(props) => <Team /> }
+          render={(props) => (
+            <Team {...props} />
+          )}
         />
         <Route
           path="/players"
@@ -49,7 +51,6 @@ function App() {
         <Route
           path="/players/playerId/:id"
           exact
-          // render={(props) => <Player /> }
           render={(props) => (
             <Player {...props} />
           )}
