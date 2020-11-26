@@ -165,11 +165,12 @@ load_data = () => {
       <div className="align-center">
           <h1>
             Live Games
-          </h1>
-          <p>There are no live games in progress. This is a proof-of-concept of how it would look.</p>
-          
+          </h1>    
 
           {this.load_data(this.state.data)}
+          
+          
+          <p>*There are no live games in progress. This is a proof-of-concept of how it would look.</p>
 
       </div>
     );
