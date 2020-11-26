@@ -55,7 +55,7 @@ load_data = () => {
          </thead>
          <tbody>
          {this.state.data.api.teams.map((item, i) => {
-           if (item.nbaFranchise == "1" && item.city != "Home" && item.city != "Away"){ // only dispaly NBA Teams
+           if (item.nbaFranchise === "1" && item.city !== "Home" && item.city !== "Away"){ // only dispaly NBA Teams
             return (
             <tr key={i}>
               <td>{item.fullName}</td>
