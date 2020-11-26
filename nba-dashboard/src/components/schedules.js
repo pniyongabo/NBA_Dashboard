@@ -15,7 +15,8 @@ export default class Schedules extends Component {
 
   componentDidMount(){
 
-    const url = 'https://api-nba-v1.p.rapidapi.com/teams/league/standard';
+    // const url = 'https://api-nba-v1.p.rapidapi.com/games/league/standard/2019';
+    const url = 'http://localhost:8000/games/league/standard/2019';
 
 
     // async function that gets teams list and header info from api
@@ -43,27 +44,33 @@ export default class Schedules extends Component {
 
 load_data = () => {
   return(
-       <table className="large-tables" id="teams">
+       <table className="large-tables" id="schedules">
          <thead>
             <tr>
-               <th>Name</th> 
-               <th>Abbr</th>
-               <th>Division</th>
-               <th>Conference</th>
+               <th>Game</th>
+               <th>Status</th>
+               <th>Date</th>
+               <th>Arena</th>
+               <th>City</th>
             </tr>
          </thead>
          <tbody>
-         {this.state.data.api.teams.map((item, i) => {
-           if (item.nbaFranchise == "1" && item.city != "Home" && item.city != "Away"){ // only dispaly NBA Teams
+         {this.state.data.api.games.map((item, i) => {
+           const homeTeamShortName = item.hTeam.shortName;
+           const awayTeamShortName = item.vTeam.shortName;
+           const homeTeamScore = item.hTeam.score.points;
+           const awayTeamScore = item.vTeam.score.points;
+           //const homeTeamName = this.state.teamsMappings[homeTeamId];
+           //const awayTeamName = this.state.teamsMappings[awayTeamId];
             return (
             <tr key={i}>
-              <td>{item.fullName}</td>
-              <td>{item.shortName}</td>
-              <td>{item.leagues.standard.divName}</td>
-              <td>{item.leagues.standard.confName}</td>
+              <td>{awayTeamShortName} {awayTeamScore} - {homeTeamScore} {homeTeamShortName}</td>
+              <td>{item.statusGame}</td>
+              <td>{item.startTimeUTC}</td>
+              <td>{item.arena}</td>
+              <td>{item.city}</td>
             </tr>
             )
-         }
        })}
          </tbody>
        </table>
@@ -76,7 +83,7 @@ load_data = () => {
       return (
         <div>
             <h1>
-              Loading teams data ...
+              Loading schedules and results ...
             </h1>
         </div>
       )
