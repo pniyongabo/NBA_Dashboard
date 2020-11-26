@@ -5,7 +5,7 @@ import {
 } from 'recharts';
 
 
-const CustomTooltip = ({ active, payload, label, all_data, all_stats} ) => {
+const CustomTooltip = ({ active, payload, label, all_data, all_needed_stats} ) => {
   let team = all_data.team_stats.find(obj => {
     return obj.fullName === label
   })
@@ -14,8 +14,9 @@ const CustomTooltip = ({ active, payload, label, all_data, all_stats} ) => {
     return (
       <div className="custom-tooltip" style={{backgroundColor: 'whitesmoke', padding: "10px", borderRadius: "5px"}}>
         <h5 className="label">{`${label}`}</h5>
-        <p>{`${all_data.glossary[all_stats[0]]}: ${payload[0].value} `}</p>
-        <p>{`${all_data.glossary[all_stats[1]]}: ${payload[1].value} `}</p>
+        <p>{`${all_data.glossary[all_needed_stats[0]]}: ${payload[0].value} `}</p>
+        <p>{`${all_data.glossary[all_needed_stats[1]]}: ${payload[1].value} `}</p>
+        <p>{`${all_data.glossary[all_needed_stats[2]]}: ${(team[all_needed_stats[2]] * 100).toFixed(1)}% `}</p>
         <img src={team.logo} alt="teamlogo" style={{width: 50, height: 50}}/>
       </div>
     );
@@ -30,7 +31,7 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
     let stats=stat_to_graph.split(" ");
     return(
       <BarChart
-        width={1700}
+        width={1200}
         height={400}
         data={all_team_data.team_stats}
       >
@@ -43,7 +44,7 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
         {/* <YAxis domain={['dataMin', 'dataMax']} /> */}
         <YAxis interval="preserveStartEnd" />
 
-        <Tooltip content={<CustomTooltip all_data={all_team_data} all_stats={stats} />} animationEasing="ease-in-out" />
+        <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stats} />} animationEasing="ease-in-out" />
         {/* <Tooltip /> */}
         {/* <Legend /> */}
 
@@ -83,7 +84,7 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
   if(type_of_graph === "bar"){
     return(
       <BarChart
-        width={1700}
+        width={1200}
         height={400}
         data={all_team_data.team_stats}
         

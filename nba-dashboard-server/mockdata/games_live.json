@@ -27,13 +27,13 @@
             "vTeam":{
               "teamId":"38",
               "score":{
-                "points":"4"
+                "points":"72"
               }
             },
             "hTeam":{
               "teamId":"28",
               "score":{
-                "points":"5"
+                "points":"64"
               }
             }
           },
@@ -52,13 +52,13 @@
             "vTeam":{
               "teamId":"2",
               "score":{
-                "points":"0"
+                "points":"30"
               }
             },
             "hTeam":{
               "teamId":"1",
               "score":{
-                "points":"0"
+                "points":"28"
               }
             }
           }

@@ -11,6 +11,8 @@ import {
   BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, Label
 } from 'recharts';
 import GraphCreation from './graphCreation';
+import Live from './live';
+import Sidebar from './sidebar';
 
 require("dotenv").config();
 
@@ -121,42 +123,61 @@ export default class Homepage extends Component {
             NBA Dashboard
           </h1>
 
+          <div class='row'>
+            <div class="col-3" style={{marginTop: '7rem'}} >
 
-          <Tabs defaultActiveKey="ppg" id="uncontrolled-tab-example">
+              <Live />
 
-            <Tab eventKey="ppg" title="Points Per Game">
+            </div>
+            <div class="col-8" style={{marginTop: '20rem'}} >
 
-              <GraphCreation 
-                all_team_data={this.state.data} 
-                type_of_graph={"bar"} 
-                stat_to_graph={"PPG"}
-              />
+              <Tabs defaultActiveKey="ppg" id="uncontrolled-tab-example">
 
-            </Tab>
-            <Tab eventKey="fg" title="Field Goals">
-              <GraphCreation 
-                all_team_data={this.state.data} 
-                type_of_graph={"doublebar"} 
-                stat_to_graph={"FGA FGM"}
-              />
-              
-            </Tab>
-            <Tab eventKey="3p" title="Three Pointers">
-              <GraphCreation 
-                all_team_data={this.state.data} 
-                type_of_graph={"doublebar"} 
-                stat_to_graph={"3PA 3PM"}
-              />
-            </Tab>
-            <Tab eventKey="ft" title="Free Throws">
-              <GraphCreation 
-                all_team_data={this.state.data} 
-                type_of_graph={"doublebar"} 
-                stat_to_graph={"FTA FTM"}
-              />
-            </Tab>
+                <Tab eventKey="ppg" title="Points Per Game">
+
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"bar"} 
+                    stat_to_graph={"PPG"}
+                  />
+
+                </Tab>
+                <Tab eventKey="fg" title="Field Goals">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"doublebar"} 
+                    stat_to_graph={"FGA FGM FG%"}
+                  />
+                  
+                </Tab>
+                <Tab eventKey="3p" title="Three Pointers">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"doublebar"} 
+                    stat_to_graph={"3PA 3PM 3P%"}
+                  />
+                </Tab>
+                <Tab eventKey="ft" title="Free Throws">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"doublebar"} 
+                    stat_to_graph={"FTA FTM FT%"}
+                  />
+                </Tab>
+                
+              </Tabs>
+
+            </div>
             
-          </Tabs>
+            <div class="col-2"  >
+              <Sidebar />
+            </div>
+          </div>
+
+          
+          
+
+          
           
 
       </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './live.css';
 // import {Doughnut} from 'react-chartjs-2';
 // require("dotenv").config();
 
@@ -75,15 +76,43 @@ getTeamsMappings = async () => {
 
 load_data = () => {
   return(
-       <table className="large-tables" id="liveGames">
-         <thead>
-            <tr>
-               <th>Current Score</th>
-               <th>Arena</th>
-               <th>City</th>
-            </tr>
-         </thead>
-         <tbody>
+      //  <table className="large-tables" id="liveGames">
+      //    <thead>
+      //       <tr>
+      //          <th>Current Score</th>
+      //          <th>Arena</th>
+      //          <th>City</th>
+      //       </tr>
+      //    </thead>
+      //    <tbody>
+      //    {this.state.liveGames.api.games.map((item, i) => {
+      //      const homeTeamId = item.hTeam.teamId;
+      //      const awayTeamId = item.vTeam.teamId;
+      //      const homeTeamScore = item.hTeam.score.points;
+      //      const awayTeamScore = item.vTeam.score.points;
+      //      const homeTeamName = this.state.teamsMappings[homeTeamId];
+      //      const awayTeamName = this.state.teamsMappings[awayTeamId];
+      //       return (
+      //       <tr key={i}>
+      //         <td>{awayTeamName} {awayTeamScore} - {homeTeamScore} {homeTeamName}</td>
+      //         <td>{item.arena}</td>
+      //         <td>{item.city}</td>
+      //       </tr>
+      //       )
+      //  })}
+      //    </tbody>
+      //  </table>
+////////////////////////////////////////////////////////////////////////////////////////////
+        <div className="container live_games" id="liveGames">
+          <div class='row header' >
+            <div class='col-6 '>
+                <h4>HOME</h4>
+            </div>
+            <div class='col-6 '>
+              <h4>AWAY</h4>
+            </div>
+          </div>
+
          {this.state.liveGames.api.games.map((item, i) => {
            const homeTeamId = item.hTeam.teamId;
            const awayTeamId = item.vTeam.teamId;
@@ -92,15 +121,31 @@ load_data = () => {
            const homeTeamName = this.state.teamsMappings[homeTeamId];
            const awayTeamName = this.state.teamsMappings[awayTeamId];
             return (
-            <tr key={i}>
-              <td>{awayTeamName} {awayTeamScore} - {homeTeamScore} {homeTeamName}</td>
-              <td>{item.arena}</td>
-              <td>{item.city}</td>
-            </tr>
+            <div className="single_game">
+              <div class='row' >
+                <div class='col-6'>
+                    <h4>{homeTeamName}</h4>
+                </div>
+                <div class='col-6'>
+                  <h4>{awayTeamName}</h4>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-6'>
+                <h3>{homeTeamScore}</h3>
+                </div>
+                <div class='col-6'>
+                <h3>{awayTeamScore}</h3>
+                </div>
+
+              </div>
+
+            </div>
+              
             )
-       })}
-         </tbody>
-       </table>
+        })}
+       </div>
+
      )
 
 }
