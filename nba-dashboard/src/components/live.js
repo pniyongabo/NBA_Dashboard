@@ -53,7 +53,6 @@ getLiveGames = async () => {
 }
 
 getTeamsMappings = async () => {
-    // direct url: 'https://api-nba-v1.p.rapidapi.com/games/live';
     const response = await fetch('http://localhost:8000/teams/mappings', 
       {"method": "GET",
        "headers":

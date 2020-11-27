@@ -16,14 +16,27 @@ export default class Players extends Component {
   }
   
   componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res, isLoaded: true}))
+    this.getAllPlayers()
+      .then(res => this.setState({ 
+        data: res
+      }))
+      .then(this.getTeamsMappings().then(res2 => this.setState({
+        teamsMappings: res2,  isLoaded: true
+      })))
       .catch(err => console.log(err));
   }
   
 
-  callBackendAPI = async () => {
-    const response = await fetch('http://localhost:8000/players/league/standard');
+  getAllPlayers = async () => {
+    // direct url: 'https://api-nba-v1.p.rapidapi.com/games/live';
+    const response = await fetch('http://localhost:8000/players/league/standard', 
+      {"method": "GET",
+       "headers":
+       {
+        "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+        }
+      });
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -32,15 +45,34 @@ export default class Players extends Component {
     return body;
   };
   
+  getTeamsMappings = async () => {
+      const response = await fetch('http://localhost:8000/teams/mappings', 
+        {"method": "GET",
+         "headers":
+         {
+          "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+          "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+          }
+        });
+        
+        const body = await response.json();
+        
+        if (response.status !== 200) {
+          return {}; 
+        }
+        
+        return body;
+
+  }
+  
   load_data = () => {
     return(
          <table className="large-tables" id="players">
            <thead>
               <tr>
                  <th>Id</th>
-                 <th>First Name</th> 
-                 <th>Last Name</th>
-                 <th>Team Id</th>
+                 <th>Name</th> 
+                 <th>Team</th>
                  <th>Joined NBA</th>
               </tr>
            </thead>
@@ -54,9 +86,8 @@ export default class Players extends Component {
                   state: {
                     data: item
                   }
-                }}> {item.firstName} </Link></td>
-                <td>{item.lastName}</td>
-                <td>{item.teamId}</td>
+                }}> {item.firstName} {item.lastName}</Link></td>
+                <td>{this.state.teamsMappings[item.teamId]}</td>
                 <td>{item.startNba}</td>
               </tr>
               )
