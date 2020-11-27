@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Doughnut} from 'react-chartjs-2';
 import { Tab, Tabs } from 'react-bootstrap';
+import './homepage.css';
+import ball_logo from '../assets/basketball_logo_t.png';
 
 import { getMainColor, getFullName, getSecondaryColor } from 'nba-color';
 // import { LineChart, Line } from 'recharts';
@@ -119,17 +121,25 @@ export default class Homepage extends Component {
 
     return (
       <div>
-          <h1>
-            NBA Dashboard
-          </h1>
+        <div className="title">
+          <div className='jumbotron'>
+            
+              <h1 className='display-2 title_text'> NBA DASH
+              <img class="img-fluid logo" src={ball_logo} alt='logo' height='auto' width='15%'/>
+              </h1>
+              
 
+          </div>
+        </div>
           <div class='row'>
-            <div class="col-3" style={{marginTop: '7rem'}} >
+            <div class="col-3" >
+              {/* style={{marginTop: '7rem'}} > */}
 
               <Live />
 
             </div>
-            <div class="col-8" style={{marginTop: '20rem'}} >
+            <div class="col-8" >
+              {/* style={{marginTop: '20rem'}} > */}
 
               <Tabs defaultActiveKey="ppg" id="uncontrolled-tab-example">
 

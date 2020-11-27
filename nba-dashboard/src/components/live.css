@@ -11,3 +11,9 @@
     
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+.reddot {
+    font-size: 13px;
+    vertical-align: middle;
+    padding-left: 7px;
+}

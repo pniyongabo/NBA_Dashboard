@@ -164,8 +164,12 @@ load_data = () => {
     return (
       <div className="align-center">
           <h1>
-            Live Games
+            Live Games 
+            <nobr className="reddot">🔴</nobr>
           </h1>    
+          
+          <br></br>
+          
 
           {this.load_data(this.state.data)}
           

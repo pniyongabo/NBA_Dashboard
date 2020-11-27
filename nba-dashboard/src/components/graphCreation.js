@@ -31,8 +31,8 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
     let stats=stat_to_graph.split(" ");
     return(
       <BarChart
-        width={1200}
-        height={400}
+        width={1300}
+        height={600}
         data={all_team_data.team_stats}
       >
         {/* <XAxis type="category" dataKey={"city"} tickLine={false} /> */}
@@ -84,8 +84,8 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
   if(type_of_graph === "bar"){
     return(
       <BarChart
-        width={1200}
-        height={400}
+        width={1300}
+        height={600}
         data={all_team_data.team_stats}
         
       >
