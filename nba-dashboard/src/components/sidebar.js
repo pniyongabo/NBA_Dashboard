@@ -13,7 +13,8 @@ export default class Sidebar extends Component {
                 
                 <div class='row'>
                     <div class='col-2 menu_icon'>☰</div>
-                </div>
+                </div>    
+            
                 <div class='row'>
                     <div class='col-2'></div>
                     <div class='col-3'>

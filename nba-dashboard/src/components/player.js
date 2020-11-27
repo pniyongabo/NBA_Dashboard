@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import {Doughnut} from 'react-chartjs-2';
+import Sidebar from './sidebar';
 
 
 export default class Player extends Component {
@@ -74,6 +75,7 @@ export default class Player extends Component {
     return (
       <div className="align-center">
           {this.load_data(this.state.data)}
+          <Sidebar />
       </div>
     );
   }

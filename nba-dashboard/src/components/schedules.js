@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Sidebar from './sidebar';
 // import {Doughnut} from 'react-chartjs-2';
 // require("dotenv").config();
 
@@ -95,7 +96,7 @@ load_data = () => {
           
 
           {this.load_data(this.state.data)}
-
+          <Sidebar />
       </div>
     );
   }

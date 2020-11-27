@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import {Doughnut} from 'react-chartjs-2';
 import {Link} from 'react-router-dom';
+import Sidebar from './sidebar';
+
 
 
 export default class Players extends Component {
@@ -84,7 +86,7 @@ export default class Players extends Component {
           
 
           {this.load_data(this.state.data)}
-
+          <Sidebar />
       </div>
     );
   }

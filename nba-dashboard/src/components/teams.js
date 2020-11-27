@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import Sidebar from './sidebar';
 
 export default class Teams extends Component {
  
@@ -95,6 +96,8 @@ load_data = () => {
           
 
           {this.load_data(this.state.data)}
+
+          <Sidebar />
 
       </div>
     );
