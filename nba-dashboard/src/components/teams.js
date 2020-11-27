@@ -90,7 +90,7 @@ load_data = () => {
               }}
               className= 'team_link'
               > 
-              <div className='team_choice rotate-center'>
+              <div className='team_choice '>
                 <img className='img-fluid team_logo' src={item.logo} alt={(item.fullName)+' logo'} width={130} height='auto' />
                 <div className='team_text'>
                 {item.fullName}
