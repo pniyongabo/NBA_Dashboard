@@ -5,7 +5,26 @@ import {
 } from 'recharts';
 
 
-const CustomTooltip = ({ active, payload, label, all_data, all_needed_stats} ) => {
+const CustomTooltip = ({ active, payload, label, all_data, all_needed_stats, type} ) => {
+
+  let fill_data = () => {
+    if(type === 'doublebar'){
+      return(
+        <div>
+          <p>{`${all_data.glossary[all_needed_stats[0]]}: ${payload[0].value} `}</p>
+          <p>{`${all_data.glossary[all_needed_stats[1]]}: ${payload[1].value} `}</p>
+          <p>{`${all_data.glossary[all_needed_stats[2]]}: ${(team[all_needed_stats[2]] * 100).toFixed(1)}% `}</p>
+        </div>
+      )
+    } else if (type === 'bar'){
+      return(
+        <div>
+          <p>{`${all_data.glossary[all_needed_stats]}: ${payload[0].value} `}</p>
+        </div>
+      )
+    }
+  }
+
   let team = all_data.team_stats.find(obj => {
     return obj.fullName === label
   })
@@ -13,11 +32,12 @@ const CustomTooltip = ({ active, payload, label, all_data, all_needed_stats} ) =
   if (active) {
     return (
       <div className="custom-tooltip" style={{backgroundColor: 'whitesmoke', padding: "10px", borderRadius: "5px"}}>
-        <h5 className="label">{`${label}`}</h5>
-        <p>{`${all_data.glossary[all_needed_stats[0]]}: ${payload[0].value} `}</p>
-        <p>{`${all_data.glossary[all_needed_stats[1]]}: ${payload[1].value} `}</p>
-        <p>{`${all_data.glossary[all_needed_stats[2]]}: ${(team[all_needed_stats[2]] * 100).toFixed(1)}% `}</p>
-        <img src={team.logo} alt="teamlogo" style={{width: 50, height: 50}}/>
+        <h5 className="label">{`${label}`} 
+          <img className="img-fluid" src={team.logo} alt="teamlogo" style={{width: 70, height: 'auto', marginLeft: '1rem'}}/>
+        </h5>
+        
+        {fill_data()}
+        
       </div>
     );
   }
@@ -44,7 +64,7 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
         {/* <YAxis domain={['dataMin', 'dataMax']} /> */}
         <YAxis interval="preserveStartEnd" />
 
-        <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stats} />} animationEasing="ease-in-out" />
+        <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stats} type={type_of_graph}/>} animationEasing="ease-in-out" />
         {/* <Tooltip /> */}
         {/* <Legend /> */}
 
@@ -92,11 +112,12 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
         {/* <XAxis type="category" dataKey={"city"} tickLine={false} /> */}
         <XAxis type="category" dataKey={"fullName"} tickLine={false} hide/>
 
-        <YAxis interval="preserveStartEnd" domain={[dataMin => ((Math.floor(dataMin)-1)), dataMax => (Math.ceil(dataMax))]} />
+        {/* <YAxis interval="preserveStartEnd" domain={[dataMin => ((Math.floor(dataMin)-1)), dataMax => (Math.ceil(dataMax))]} /> */}
         {/* <YAxis domain={['dataMin', 'dataMax']} /> */}
-        {/* <YAxis interval="preserveStartEnd" /> */}
+        <YAxis interval="preserveStartEnd" />
 
-        <Tooltip />
+        {/* <Tooltip /> */}
+        <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />
         <Bar dataKey={stat_to_graph} 
         animationDuration={2000}
         >

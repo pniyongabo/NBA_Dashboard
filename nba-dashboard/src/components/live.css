@@ -17,3 +17,9 @@
     vertical-align: middle;
     padding-left: 7px;
 }
+
+.live_box{
+    margin-left: 1rem;
+    background-color: whitesmoke;
+    box-shadow: 0 0 15px 10px #e08d4a;
+}

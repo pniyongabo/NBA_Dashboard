@@ -124,9 +124,9 @@ export default class Homepage extends Component {
         <div className="title">
           <div className='jumbotron'>
             
-              <h1 className='display-2 title_text'> NBA DASH
-              <img class="img-fluid logo" src={ball_logo} alt='logo' height='auto' width='15%'/>
-              </h1>
+              <h1 className='d-inline-block display-2 title_text'> NBA DASH</h1>
+              <img class="d-inline-block img-fluid logo" src={ball_logo} alt='logo' height='auto' width='13%'/>
+              
               
 
           </div>
@@ -141,37 +141,109 @@ export default class Homepage extends Component {
             <div class="col-8" >
               {/* style={{marginTop: '20rem'}} > */}
 
-              <Tabs defaultActiveKey="ppg" id="uncontrolled-tab-example">
+              <Tabs className='tabs' defaultActiveKey="" id="uncontrolled-tab-example">
 
-                <Tab eventKey="ppg" title="Points Per Game">
-
+                <Tab.Pane className='tab' eventKey="ppg" title="Points Per Game">
                   <GraphCreation 
                     all_team_data={this.state.data} 
                     type_of_graph={"bar"} 
                     stat_to_graph={"PPG"}
                   />
+                </Tab.Pane>
 
-                </Tab>
-                <Tab eventKey="fg" title="Field Goals">
+                <Tab className='tab' eventKey="fg" title="Field Goals">
                   <GraphCreation 
                     all_team_data={this.state.data} 
                     type_of_graph={"doublebar"} 
                     stat_to_graph={"FGA FGM FG%"}
                   />
-                  
                 </Tab>
-                <Tab eventKey="3p" title="Three Pointers">
+
+                <Tab className='tab' eventKey="3p" title="Three Pointers">
                   <GraphCreation 
                     all_team_data={this.state.data} 
                     type_of_graph={"doublebar"} 
                     stat_to_graph={"3PA 3PM 3P%"}
                   />
                 </Tab>
-                <Tab eventKey="ft" title="Free Throws">
+
+                <Tab className='tab' eventKey="ft" title="Free Throws">
                   <GraphCreation 
                     all_team_data={this.state.data} 
                     type_of_graph={"doublebar"} 
                     stat_to_graph={"FTA FTM FT%"}
+                  />
+                </Tab>
+
+                <Tab className='tab' eventKey="apg" title="Assists Per Game">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"bar"} 
+                    stat_to_graph={"APG"}
+                  />
+                </Tab>
+
+                <Tab className='tab' eventKey="bpg" title="Blocks Per Game">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"bar"} 
+                    stat_to_graph={"BPG"}
+                  />
+                </Tab>
+
+                <Tab className='tab' eventKey="orb" title="Offensive Rebounds">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"bar"} 
+                    stat_to_graph={"ORB"}
+                  />
+                </Tab>
+
+                <Tab className='tab' eventKey="drb" title="Defensive Rebounds">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"bar"} 
+                    stat_to_graph={"DRB"}
+                  />
+                </Tab>
+
+                <Tab className='tab' eventKey="pf" title="Personal Fouls">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"bar"} 
+                    stat_to_graph={"PF"}
+                  />
+                </Tab>
+
+                <Tab className='tab' eventKey="gp" title="Games Played">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"bar"} 
+                    stat_to_graph={"GP"}
+                  />
+                </Tab>
+
+                <Tab className='tab' eventKey="rpg" title="Rebounds Per Game">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"bar"} 
+                    stat_to_graph={"RPG"}
+                  />
+                </Tab>
+
+                <Tab className='tab' eventKey="spg" title="Steals Per Game">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"bar"} 
+                    stat_to_graph={"SPG"}
+                  />
+                </Tab>
+
+                <Tab className='tab' eventKey="tov" title="Turnovers">
+                  <GraphCreation 
+                    all_team_data={this.state.data} 
+                    type_of_graph={"bar"} 
+                    stat_to_graph={"TOV"}
                   />
                 </Tab>
                 

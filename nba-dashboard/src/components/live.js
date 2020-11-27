@@ -162,7 +162,7 @@ load_data = () => {
     }
 
     return (
-      <div className="align-center">
+      <div className="align-center live_box">
           <h1>
             Live Games 
             <nobr className="reddot">🔴</nobr>
