@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import GraphCreation from './graphCreation';
 import Sidebar from './sidebar';
 import Header from './header';
-// import {Doughnut} from 'react-chartjs-2';
-// require("dotenv").config();
 
 export default class Standing extends Component {
  
@@ -104,37 +102,8 @@ load_data = (standings) => {
 
   
   return(
-      //  <table className="large-tables standings">
-      //    <thead>
-      //       <tr>
-      //          <th>Rank</th>
-      //          <th>Team</th>
-      //          <th>Win Pct</th>
-      //          <th>Win Streak</th>
-      //          <th>Div Name</th>
-      //          <th>Div Rank</th>
-      //       </tr>
-      //    </thead>
-      //    <tbody>
-      //    {sortedStandings.map((item, i) => {
-      //      const teamName = this.state.teamsMappings[item.teamId];
-      //       return (
-      //       <tr key={i}>
-      //         <td>{item.conference.rank}</td>
-      //         <td>{teamName}</td>
-      //         <td>{item.winPercentage}</td>
-      //         <td>{item.winStreak}</td>
-      //         <td>{item.division.name}</td>
-      //         <td>{item.division.rank}</td>
-      //       </tr>
-      //       )
-      //  })}
-      //    </tbody>
-      //  </table>
       <GraphCreation
-      // all_data={this.props.all_data}
       all_team_data={comp_data}
-      // team_mappings={this.state.teamsMappings}
       type_of_graph={"singlebar"}
       stat_to_graph={"winPercentage"}
       />

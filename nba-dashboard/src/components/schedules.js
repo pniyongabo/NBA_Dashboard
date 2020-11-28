@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from './sidebar';
 import Header from './header';
-// import {Doughnut} from 'react-chartjs-2';
-// require("dotenv").config();
 
 export default class Schedules extends Component {
  
