@@ -8,7 +8,8 @@ export default class Live extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoaded: false,
+      liveGamesLoaded: false,
+      teamsMappingsLoaded: false,
       liveGames: {},
       teamsMappings: {}
     }
@@ -19,12 +20,13 @@ export default class Live extends Component {
     
     this.getLiveGames()
       .then(res1 => this.setState({ 
-        liveGames: res1
+        liveGames: res1,
+        liveGamesLoaded: true
       }))
       .then(this.getTeamsMappings()
         .then(res2 => this.setState({ 
           teamsMappings: res2,
-          isLoaded: true,
+          teamsMappingsLoaded: true,
         })))
       .catch(err => console.log(err));
     
@@ -191,7 +193,7 @@ load_data = () => {
 }
     
   render() {
-    if(!this.state.isLoaded){
+    if(!this.state.liveGamesLoaded || !this.state.teamsMappingsLoaded){
       return (
         <div>
             <h1>

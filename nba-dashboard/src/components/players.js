@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MDBDataTable } from 'mdbreact';
 // import {Doughnut} from 'react-chartjs-2';
-import {Link} from 'react-router-dom';
+//import {Link,useHistory} from 'react-router-dom';
 import Sidebar from './sidebar';
 
 
@@ -69,6 +69,11 @@ export default class Players extends Component {
 
   }
   
+  goToPlayerPage = (id) => {
+    //let history = useHistory();
+    window.location.assign('/players/playerId/'+id);
+  }
+  
   
 
   
@@ -78,11 +83,21 @@ export default class Players extends Component {
     console.log(rawData.api.players.length)
     const dataRows = rawData.api.players.map((item, i) => {
       var currentRow = {};
+      const playerURL = "/players/playerId/" + item.playerId;
+      const playerName = item.firstName + " " + item.lastName;
       
       currentRow["id"] = item.playerId;
-      currentRow["name"] = item.firstName + " " + item.lastName;
+      currentRow["name"] = playerName;
+      //currentRow["link"] = '<a href="'+playerURL+'" >'+playerName+'</a>'
+      //currentRow["name"] = '<Link to={{ pathname: "/players/playerId/"' + item.playerId +', state: { data: ' +item +'} }}> {'+item.firstName + ' ' + item.lastName+'</Link>',
       currentRow["team"] = this.state.teamsMappings[item.teamId];
+      currentRow["college"] = item.collegeName;
       currentRow["joined"] = item.startNba;
+      currentRow["birthdate"] = item.dateOfBirth;
+      currentRow["weight"] = item.weightInKilograms;
+      currentRow["height"] = item.heightInMeters;
+      
+      currentRow["clickEvent"] = () => this.goToPlayerPage(item.playerId);
       
       return currentRow; 
     });
@@ -91,69 +106,51 @@ export default class Players extends Component {
             {
               label: 'Id',
               field: 'id',
-              sort: 'asc',
-              width: 150
+              sort: 'asc'
             },
             {
               label: 'Player Name',
               field: 'name',
-              sort: 'asc',
-              width: 270
+              sort: 'asc'
             },
             {
               label: 'Current Team',
               field: 'team',
-              sort: 'asc',
-              width: 200
+              sort: 'asc'
+            },
+            {
+              label: 'College Team',
+              field: 'college',
+              sort: 'asc'
             },
             {
               label: 'Joined NBA',
               field: 'joined',
-              sort: 'asc',
-              width: 100
+              sort: 'asc'
+            },
+            {
+              label: 'Date of Birth',
+              field: 'birthdate',
+              sort: 'asc'
+            },
+            {
+              label: 'Weight (kg)',
+              field: 'weight',
+              sort: 'asc'
+            },
+            {
+              label: 'Height (m)',
+              field: 'height',
+              sort: 'asc'
             }
           ];
   
-    const data = {
+    const playerData = {
       columns: dataColumns,
       rows: dataRows
     };
-    
-    /*
-    return(
-         <table className="large-tables" id="players">
-           <thead>
-              <tr>
-                 <th>Id</th>
-                 <th>Name</th> 
-                 <th>Team</th>
-                 <th>Joined NBA</th>
-              </tr>
-           </thead>
-           <tbody>
-           {this.state.data.api.players.map((item, i) => {
-              return (
-              <tr key={i}>
-                <td>{item.playerId}</td>
-                <td><Link to={{
-                  pathname: '/players/playerId/' + item.playerId,
-                  state: {
-                    data: item
-                  }
-                }}> {item.firstName} {item.lastName}</Link></td>
-                <td>{this.state.teamsMappings[item.teamId]}</td>
-                <td>{item.startNba}</td>
-              </tr>
-              )
-           })}
-           </tbody>
-         </table>
-       )*/
        
-       return data;
-    
-
-
+    return playerData;
   }
     
   render() {
@@ -172,13 +169,16 @@ export default class Players extends Component {
           <h1>
             NBA Players
           </h1>
-          
-          <MDBDataTable
-             striped
-             bordered
-             small
-             data={this.state.data}
-          />
+          <div className='container'>
+            <div className='d-flex flex-wrap justify-content-around'>
+              <MDBDataTable
+                 striped
+                 bordered
+                 responsive
+                 data={this.state.data}
+              />
+            </div>
+          </div>
 
           <Sidebar />
       </div>
