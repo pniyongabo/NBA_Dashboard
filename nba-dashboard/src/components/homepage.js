@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
-import './homepage.css';
-import ball_logo from '../assets/basketball_logo_t.png';
+
 import GraphCreation from './graphCreation';
 import Live from './live';
 import Sidebar from './sidebar';
+import Header from './header';
+
+import './homepage.css';
 
 require("dotenv").config();
 
@@ -16,16 +18,8 @@ export default class Homepage extends Component {
 
     return (
       <div>
-        <div className="title">
-          <div className='jumbotron'>
-            
-              <h1 className='d-inline-block display-2 title_text'> NBA DASH</h1>
-              <img className="d-inline-block img-fluid logo" src={ball_logo} alt='logo' height='auto' width='13%'/>
-              
-              
-
-          </div>
-        </div>
+          <Header />
+        
           <div className='row'>
             <div className="col-3" >
 

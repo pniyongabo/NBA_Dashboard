@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GraphCreation from './graphCreation';
 import Sidebar from './sidebar';
+import Header from './header';
 // import {Doughnut} from 'react-chartjs-2';
 // require("dotenv").config();
 
@@ -9,7 +10,8 @@ export default class Standing extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoaded: false,
+      teamsMappingsLoaded: false,
+      standingsLoaded: false,
       standingsWest: {},
       standingsEast: {},
       teamsMappings: {}
@@ -22,12 +24,13 @@ export default class Standing extends Component {
     this.getStandings()
       .then(res1 => this.setState({ 
         standingsEast: res1.api.standings.filter((team) => team.conference.name === "east"),
-        standingsWest: res1.api.standings.filter((team) => team.conference.name === "west")
+        standingsWest: res1.api.standings.filter((team) => team.conference.name === "west"),
+        standingsLoaded: true
       }))
       .then(this.getTeamsMappings()
         .then(res2 => this.setState({ 
           teamsMappings: res2,
-          isLoaded: true,
+          teamsMappingsLoaded: true,
         })))
       .catch(err => console.log(err));
     
@@ -140,7 +143,7 @@ load_data = (standings) => {
 }
     
   render() {
-    if(!this.state.isLoaded){
+    if(!this.state.teamsMappingsLoaded || !this.state.standingsLoaded){
       return (
         <div>
             <h1>
@@ -152,18 +155,21 @@ load_data = (standings) => {
 
     return (
       <div className="align-center">
+          <Header />
           <h1>
             Standings
           </h1>
           
-          <div className='row'>
-            <div className='col-6'>
-              <h3>East Conference Standings</h3>
-              {this.load_data(this.state.standingsEast)}
-            </div>
-            <div className='col-6'>
-              <h3>West Conference Standings</h3>
-              {this.load_data(this.state.standingsWest)}
+          <div className='container'>
+            <div className='row'>
+              <div className='col-12 col-sm-12 col-md-12 col-lg-6'>
+                <h3>East Conference Standings</h3>
+                {this.load_data(this.state.standingsEast)}
+              </div>
+              <div className='col-12 col-sm-12 col-md-12 col-lg-6'>
+                <h3>West Conference Standings</h3>
+                {this.load_data(this.state.standingsWest)}
+              </div>
             </div>
           </div>
           <Sidebar />
