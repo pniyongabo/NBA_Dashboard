@@ -33,6 +33,11 @@ exports.getStandings = function (request, response) {
   return response.send(data);
 };
 
+exports.getPlayerById = function (request, response) {
+  var data = getJsonData(basePathToData, 'player_playerid_216.json');
+  return response.send(data);
+};
+
 exports.getTeamsMappings = function (request, response) {
   var data = getJsonData(basePathToData, 'teams_league_standard.json');
   var teams = data.api.teams.reduce((map, team) => (map[team.teamId] = team.fullName, map), {})
