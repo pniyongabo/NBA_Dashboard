@@ -45,7 +45,7 @@ export default class Schedules extends Component {
 
 load_data = () => {
   return(
-       <table className="large-tables" id="schedules">
+       <table className="large-tables table table-responsive" id="schedules">
          <thead>
             <tr>
                <th>Game</th>
@@ -79,7 +79,6 @@ load_data = () => {
               <td>{awayTeamShortName} {awayTeamScore} - {homeTeamScore} {homeTeamShortName}</td>
               <td>{item.statusGame}</td>
               <td>{localTime}</td>
-              <td>{item.startTimeUTC}</td>
               <td>{item.arena}</td>
               <td>{item.city}</td>
             </tr>
@@ -107,9 +106,11 @@ load_data = () => {
           <h1>
             Schedules and Results
           </h1>
-          
-
-          {this.load_data(this.state.data)}
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              {this.load_data(this.state.data)}
+            </div>
+          </div>
           <Sidebar />
       </div>
     );
