@@ -133,7 +133,7 @@ export default class App extends Component {
             <Route
               path="/standings"
               exact
-              render={(props) => <Standings /> }
+              render={(props) => <Standings all_data={this.state.data}/> }
             />
             <Route
               path="/schedules"

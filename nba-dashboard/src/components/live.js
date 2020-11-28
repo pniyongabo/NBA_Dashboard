@@ -175,10 +175,10 @@ load_data = () => {
 
               <div className='row'>
                 <div className='col-6'>
-                  <h3>{scoreColors[0]}</h3>
+                  {scoreColors[0]}
                 </div>
                 <div className='col-6'>
-                  <h3>{scoreColors[1]}</h3>
+                  {scoreColors[1]}
                 </div>
               </div>
 

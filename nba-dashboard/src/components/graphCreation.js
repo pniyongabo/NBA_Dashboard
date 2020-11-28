@@ -5,27 +5,35 @@ import {
 } from 'recharts';
 
 
-const CustomTooltip = ({ active, payload, label, all_data, all_needed_stats, type} ) => {
+const CustomTooltip = ({ active, payload, label, glossary, all_data, all_needed_stats, type} ) => {
 
   let fill_data = () => {
     if(type === 'doublebar'){
       return(
         <div>
-          <p>{`${all_data.glossary[all_needed_stats[0]]}: ${payload[0].value} `}</p>
-          <p>{`${all_data.glossary[all_needed_stats[1]]}: ${payload[1].value} `}</p>
-          <p>{`${all_data.glossary[all_needed_stats[2]]}: ${(team[all_needed_stats[2]] * 100).toFixed(1)}% `}</p>
+          <p>{`${glossary[all_needed_stats[0]]}: ${payload[0].value} `}</p>
+          <p>{`${glossary[all_needed_stats[1]]}: ${payload[1].value} `}</p>
+          <p>{`${glossary[all_needed_stats[2]]}: ${(team[all_needed_stats[2]] * 100).toFixed(1)}% `}</p>
         </div>
       )
     } else if (type === 'bar'){
       return(
         <div>
-          <p>{`${all_data.glossary[all_needed_stats]}: ${payload[0].value} `}</p>
+          <p>{`${glossary[all_needed_stats]}: ${payload[0].value} `}</p>
         </div>
       )
-    }
+    } else if (type === 'singlebar'){
+      return(
+        <div>
+          <p>{`Win Percentage: ${payload[0].value} `}</p>
+          <p>{`Rank in Conference: ${team.conference.rank} `}</p>
+        </div>
+      )
+    } 
+    
   }
 
-  let team = all_data.team_stats.find(obj => {
+  let team = all_data.find(obj => {
     return obj.fullName === label
   })
 
@@ -45,7 +53,7 @@ const CustomTooltip = ({ active, payload, label, all_data, all_needed_stats, typ
   return null;
 };
 
-function processGraph(all_team_data, type_of_graph, stat_to_graph){
+function processGraph(all_data, all_team_data, team_mappings, type_of_graph, stat_to_graph){
 
   if(type_of_graph === "doublebar"){
     let stats=stat_to_graph.split(" ");
@@ -64,7 +72,7 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
         {/* <YAxis domain={['dataMin', 'dataMax']} /> */}
         <YAxis interval="preserveStartEnd" />
 
-        <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stats} type={type_of_graph}/>} animationEasing="ease-in-out" />
+        <Tooltip content={<CustomTooltip glossary={all_team_data.glossary} all_data={all_team_data.team_stats} all_needed_stats={stats} type={type_of_graph}/>} animationEasing="ease-in-out" />
         {/* <Tooltip /> */}
         {/* <Legend /> */}
         <CartesianGrid />
@@ -121,7 +129,7 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
         <CartesianGrid />
 
         {/* <Tooltip /> */}
-        <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />
+        <Tooltip content={<CustomTooltip glossary={all_team_data.glossary} all_data={all_team_data.team_stats} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />
         <Bar dataKey={stat_to_graph} 
         animationDuration={2000}
         // isAnimationActive={false}
@@ -138,6 +146,45 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
       </BarChart>
     );
   }
+
+  if(type_of_graph === "singlebar"){
+    let window_width = window.innerWidth;
+    let window_height = window.innerHeight;
+    return(
+      <BarChart
+        width={(window_width/2)-100}
+        height={window_height/1.5}
+        data={all_team_data}
+        
+      >
+        {/* <XAxis type="category" dataKey={"city"} tickLine={false} /> */}
+        <XAxis type="category" dataKey={'fullName'} tickLine={false} hide/>
+
+        {/* <YAxis interval="preserveStartEnd" domain={[dataMin => ((Math.floor(dataMin)-1)), dataMax => (Math.ceil(dataMax))]} /> */}
+        {/* <YAxis domain={['dataMin', 'dataMax']} /> */}
+        <YAxis interval="preserveStartEnd" />
+
+        <CartesianGrid />
+
+        <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />
+        <Bar dataKey={stat_to_graph} 
+        animationDuration={2000}
+        // isAnimationActive={false}
+
+        >
+        {
+          all_team_data.map((entry, index) => {
+            //sets the background color of each bar to the main team color, and secondary color to font and border color
+            return <Cell key={index} fill={getMainColor(entry.shortName).hex} stroke={getSecondaryColor(entry.shortName).hex} />;
+          })
+        }
+
+        <LabelList dataKey="shortName" />
+        </Bar>
+      </BarChart>
+    );
+  }
+
 }
 
 
@@ -152,7 +199,7 @@ export default class GraphCreation extends Component {
         return(
             
 
-          processGraph(this.props.all_team_data, this.props.type_of_graph, this.props.stat_to_graph)
+          processGraph(this.props.all_data, this.props.all_team_data, this.props.team_mappings, this.props.type_of_graph, this.props.stat_to_graph)
 
         )
     }
