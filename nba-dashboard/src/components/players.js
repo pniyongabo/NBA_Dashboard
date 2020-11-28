@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { MDBDataTable } from 'mdbreact';
 // import {Doughnut} from 'react-chartjs-2';
 import {Link} from 'react-router-dom';
 import Sidebar from './sidebar';
-
 
 
 export default class Players extends Component {
@@ -12,24 +12,28 @@ export default class Players extends Component {
     this.state = {
       isLoaded: false,
       data: {},
+      teamsMappings: {}
     }
   }
   
   componentDidMount() {
     this.getAllPlayers()
-      .then(res => this.setState({ 
-        data: res
-      }))
+      .then(res1 => this.load_data(res1)
+        .then(res3 => this.setState({
+          data: res3
+        }))
+      )
       .then(this.getTeamsMappings().then(res2 => this.setState({
-        teamsMappings: res2,  isLoaded: true
+        teamsMappings: res2,
+        isLoaded: true
       })))
       .catch(err => console.log(err));
   }
   
 
   getAllPlayers = async () => {
-    // direct url: 'https://api-nba-v1.p.rapidapi.com/games/live';
     const response = await fetch('http://localhost:8000/players/league/standard', 
+    //const response = await fetch('https://api-nba-v1.p.rapidapi.com/players/league/standard',
       {"method": "GET",
        "headers":
        {
@@ -65,7 +69,57 @@ export default class Players extends Component {
 
   }
   
-  load_data = () => {
+  
+
+  
+  load_data = async (rawData) => {
+  
+    
+    console.log(rawData.api.players.length)
+    const dataRows = rawData.api.players.map((item, i) => {
+      var currentRow = {};
+      
+      currentRow["id"] = item.playerId;
+      currentRow["name"] = item.firstName + " " + item.lastName;
+      currentRow["team"] = this.state.teamsMappings[item.teamId];
+      currentRow["joined"] = item.startNba;
+      
+      return currentRow; 
+    });
+    
+    const dataColumns = [
+            {
+              label: 'Id',
+              field: 'id',
+              sort: 'asc',
+              width: 150
+            },
+            {
+              label: 'Player Name',
+              field: 'name',
+              sort: 'asc',
+              width: 270
+            },
+            {
+              label: 'Current Team',
+              field: 'team',
+              sort: 'asc',
+              width: 200
+            },
+            {
+              label: 'Joined NBA',
+              field: 'joined',
+              sort: 'asc',
+              width: 100
+            }
+          ];
+  
+    const data = {
+      columns: dataColumns,
+      rows: dataRows
+    };
+    
+    /*
     return(
          <table className="large-tables" id="players">
            <thead>
@@ -94,7 +148,11 @@ export default class Players extends Component {
            })}
            </tbody>
          </table>
-       )
+       )*/
+       
+       return data;
+    
+
 
   }
     
@@ -115,8 +173,13 @@ export default class Players extends Component {
             NBA Players
           </h1>
           
+          <MDBDataTable
+             striped
+             bordered
+             small
+             data={this.state.data}
+          />
 
-          {this.load_data(this.state.data)}
           <Sidebar />
       </div>
     );
