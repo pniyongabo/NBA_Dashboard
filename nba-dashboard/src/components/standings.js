@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GraphCreation from './graphCreation';
 import Sidebar from './sidebar';
+import Header from './header';
 // import {Doughnut} from 'react-chartjs-2';
 // require("dotenv").config();
 
@@ -154,6 +155,7 @@ load_data = (standings) => {
 
     return (
       <div className="align-center">
+          <Header />
           <h1>
             Standings
           </h1>

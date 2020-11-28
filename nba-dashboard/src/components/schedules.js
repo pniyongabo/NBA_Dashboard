@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from './sidebar';
+import Header from './header';
 // import {Doughnut} from 'react-chartjs-2';
 // require("dotenv").config();
 
@@ -103,6 +104,7 @@ load_data = () => {
 
     return (
       <div className="align-center">
+          <Header />
           <h1>
             Schedules and Results
           </h1>

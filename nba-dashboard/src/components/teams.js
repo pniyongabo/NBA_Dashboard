@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Sidebar from './sidebar';
+import Header from './header';
+
 import './teams.css';
 
 export default class Teams extends Component {
@@ -126,6 +128,7 @@ load_data = () => {
 
     return (
       <div className="align-center">
+          <Header />
           <h1>
             NBA Teams
           </h1>

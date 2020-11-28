@@ -44,6 +44,8 @@ export default class App extends Component {
         }
 
         team_data.team_stats.sort(compare_team_names);
+        //console.log(team_data.toString);
+        console.log(JSON.stringify(team_data))
 
         this.setState({ isLoaded: false, data: team_data })
         console.log(this.state.data);

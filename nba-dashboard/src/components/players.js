@@ -3,6 +3,7 @@ import { MDBDataTable } from 'mdbreact';
 // import {Doughnut} from 'react-chartjs-2';
 // import {Link,useHistory} from 'react-router-dom';
 import Sidebar from './sidebar';
+import Header from './header';
 import './players.css';
 
 
@@ -169,6 +170,7 @@ export default class Players extends Component {
 
     return (
       <div className="align-center">
+          <Header />
           <h1>
             NBA Players
           </h1>

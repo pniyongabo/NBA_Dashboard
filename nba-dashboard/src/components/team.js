@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './team.css';
 import Sidebar from './sidebar';
-// import {Doughnut} from 'react-chartjs-2';
+import Header from './header';
+
+import './team.css';
 
 
 export default class Team extends Component {
@@ -73,9 +74,12 @@ export default class Team extends Component {
     }
 
     return (
+        <div>
+        <Header />
         <div className="align-center">
             {this.load_data(this.state.data)}
             <Sidebar />
+        </div>
         </div>
     );
   }
