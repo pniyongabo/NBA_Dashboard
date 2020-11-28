@@ -121,7 +121,7 @@ load_data = () => {
            const homeTeamName = this.state.teamsMappings[homeTeamId];
            const awayTeamName = this.state.teamsMappings[awayTeamId];
             return (
-            <div className="single_game">
+            <div className="single_game" key={i}>
               <div class='row' >
                 <div class='col-6'>
                     <h4>{homeTeamName}</h4>

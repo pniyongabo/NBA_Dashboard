@@ -73,11 +73,12 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
           barSize={20}
           barGap={0}
           xAxisId={0}
+          isAnimationActive={false}
         >
         {
           all_team_data.team_stats.map((entry, index) => {
             //sets the background color of each bar to the main team color, and secondary color to font and border color
-            return <Cell fill={getMainColor(entry.shortName).hex} stroke={"black"}/>;
+            return <Cell fill={getMainColor(entry.shortName).hex} stroke={"black"} key={index}/>;
           })
         }
           <LabelList dataKey="shortName" position='top' />
@@ -120,11 +121,13 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
         <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />
         <Bar dataKey={stat_to_graph} 
         animationDuration={2000}
+        // isAnimationActive={false}
+
         >
         {
           all_team_data.team_stats.map((entry, index) => {
             //sets the background color of each bar to the main team color, and secondary color to font and border color
-            return <Cell fill={getMainColor(entry.shortName).hex} stroke={getSecondaryColor(entry.shortName).hex}/>;
+            return <Cell fill={getMainColor(entry.shortName).hex} stroke={getSecondaryColor(entry.shortName).hex} key={index}/>;
           })
         }
           <LabelList dataKey="shortName" />
