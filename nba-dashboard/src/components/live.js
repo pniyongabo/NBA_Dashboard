@@ -103,11 +103,11 @@ load_data = () => {
       //  </table>
 ////////////////////////////////////////////////////////////////////////////////////////////
         <div className="container live_games" id="liveGames">
-          <div class='row header' >
-            <div class='col-6 '>
+          <div className='row header' >
+            <div className='col-6 '>
                 <h4>HOME</h4>
             </div>
-            <div class='col-6 '>
+            <div className='col-6 '>
               <h4>AWAY</h4>
             </div>
           </div>
@@ -121,19 +121,19 @@ load_data = () => {
            const awayTeamName = this.state.teamsMappings[awayTeamId];
             return (
             <div className="single_game" key={i}>
-              <div class='row' >
-                <div class='col-6'>
+              <div className='row' >
+                <div className='col-6'>
                     <h4>{homeTeamName}</h4>
                 </div>
-                <div class='col-6'>
+                <div className='col-6'>
                   <h4>{awayTeamName}</h4>
                 </div>
               </div>
-              <div class='row'>
-                <div class='col-6'>
+              <div className='row'>
+                <div className='col-6'>
                 <h3>{homeTeamScore}</h3>
                 </div>
-                <div class='col-6'>
+                <div className='col-6'>
                 <h3>{awayTeamScore}</h3>
                 </div>
 

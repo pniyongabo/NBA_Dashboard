@@ -60,6 +60,7 @@ export default class App extends Component {
             if(e.Team === api_team.city){ return true}
             if(e.Team === "L.A. Clippers" && api_team.city === "LA"){return true}
             if(e.Team === "L.A. Lakers" && api_team.city === "Los Angeles"){return true}
+            return false;
           });
           if(found_city !== undefined){
             // found_city['team_info'] = api_team;

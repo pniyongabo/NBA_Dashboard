@@ -67,6 +67,7 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
         <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stats} type={type_of_graph}/>} animationEasing="ease-in-out" />
         {/* <Tooltip /> */}
         {/* <Legend /> */}
+        <CartesianGrid />
 
         <Bar dataKey={stats[0]} 
           animationDuration={2000}
@@ -93,7 +94,7 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
         {
           all_team_data.team_stats.map((entry, index) => {
             //sets the background color of each bar to the main team color, and secondary color to font and border color
-            return <Cell fill={getSecondaryColor(entry.shortName).hex} stroke={"black"} />;
+            return <Cell fill={getSecondaryColor(entry.shortName).hex} stroke={"black"} key={index}/>;
           })
         }
           {/* <LabelList dataKey="shortName" /> */}
@@ -116,6 +117,8 @@ function processGraph(all_team_data, type_of_graph, stat_to_graph){
         {/* <YAxis interval="preserveStartEnd" domain={[dataMin => ((Math.floor(dataMin)-1)), dataMax => (Math.ceil(dataMax))]} /> */}
         {/* <YAxis domain={['dataMin', 'dataMax']} /> */}
         <YAxis interval="preserveStartEnd" />
+
+        <CartesianGrid />
 
         {/* <Tooltip /> */}
         <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />

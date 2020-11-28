@@ -20,19 +20,19 @@ export default class Homepage extends Component {
           <div className='jumbotron'>
             
               <h1 className='d-inline-block display-2 title_text'> NBA DASH</h1>
-              <img class="d-inline-block img-fluid logo" src={ball_logo} alt='logo' height='auto' width='13%'/>
+              <img className="d-inline-block img-fluid logo" src={ball_logo} alt='logo' height='auto' width='13%'/>
               
               
 
           </div>
         </div>
-          <div class='row'>
-            <div class="col-3" >
+          <div className='row'>
+            <div className="col-3" >
 
               <Live />
 
             </div>
-            <div class="col-8" >
+            <div className="col-8" >
 
               <Tabs className='tabs' defaultActiveKey="ppg" id="uncontrolled-tab-example" >
 
@@ -147,7 +147,7 @@ export default class Homepage extends Component {
 
             </div>
             
-            <div class="col-2"  >
+            <div className="col-2"  >
               <Sidebar />
             </div>
           </div>
