@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { MDBDataTable } from 'mdbreact';
 // import {Doughnut} from 'react-chartjs-2';
-//import {Link,useHistory} from 'react-router-dom';
+// import {Link,useHistory} from 'react-router-dom';
 import Sidebar from './sidebar';
+import './players.css';
 
 
 export default class Players extends Component {
@@ -11,6 +12,7 @@ export default class Players extends Component {
     super(props);
     this.state = {
       isLoaded: false,
+      teamsMappingsLoaded: false,
       data: {},
       teamsMappings: {}
     }
@@ -20,12 +22,13 @@ export default class Players extends Component {
     this.getAllPlayers()
       .then(res1 => this.load_data(res1)
         .then(res3 => this.setState({
-          data: res3
+          data: res3,
+          isLoaded: true
         }))
       )
       .then(this.getTeamsMappings().then(res2 => this.setState({
         teamsMappings: res2,
-        isLoaded: true
+        teamsMappingsLoaded: true
       })))
       .catch(err => console.log(err));
   }
@@ -154,7 +157,7 @@ export default class Players extends Component {
   }
     
   render() {
-    if(!this.state.isLoaded){
+    if(!this.state.isLoaded || !this.state.teamsMappingsLoaded){
       return (
         <div>
             <h1>
