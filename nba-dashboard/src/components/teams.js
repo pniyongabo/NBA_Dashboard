@@ -81,7 +81,7 @@ load_data = () => {
         {this.state.data.api.teams.map((item, i) => {
            if (item.nbaFranchise === "1" && item.city !== "Home" && item.city !== "Away"){ // only dispaly NBA Teams
             return (
-            <div>
+            <div key={i}>
               <Link to={{
                 pathname: '/teams/teamId/' + item.teamId,
                 state: {

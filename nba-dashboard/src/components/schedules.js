@@ -61,10 +61,24 @@ load_data = () => {
            const awayTeamShortName = item.vTeam.shortName;
            const homeTeamScore = item.hTeam.score.points;
            const awayTeamScore = item.vTeam.score.points;
+
+           var options = {
+            timeZone: "America/Los_Angeles",
+            year: 'numeric', month: 'short', day: 'numeric',
+            hour: 'numeric', minute: 'numeric', timeZoneName: 'short'
+            };
+        
+            var formatter = new Intl.DateTimeFormat([], options);
+            
+            // var UTCTime = "2017-09-03T02:00:00Z";
+            var localTime = formatter.format(new Date(item.startTimeUTC));
+            // var currentTime = formatter.format(new Date()); console.log(currentTime, localTime);
+
             return (
             <tr key={i}>
               <td>{awayTeamShortName} {awayTeamScore} - {homeTeamScore} {homeTeamShortName}</td>
               <td>{item.statusGame}</td>
+              <td>{localTime}</td>
               <td>{item.startTimeUTC}</td>
               <td>{item.arena}</td>
               <td>{item.city}</td>
