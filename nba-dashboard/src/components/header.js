@@ -10,12 +10,8 @@ export default class Sidebar extends Component {
         return(
           <div className="title">
             <div className='jumbotron'>
-              
-                <h1 className='d-inline-block display-2 title_text'> NBA DASH</h1>
                 <img className="d-inline-block img-fluid logo" src={ball_logo} alt='logo' height='auto' width='13%'/>
-                
-                
-  
+                <h1 className='d-inline-block display-2 title_text'>NBA DASHBOARD</h1>
             </div>
           </div>
 

@@ -5,14 +5,16 @@
 }
 
 .title{
-    text-align: center;
+    text-align: left;
     color: black;
 }
 
 .title_text {
     font-family: 'Graduate', cursive;
+    vertical-align: middle;
 }
 
 .logo {
     margin-left: 4rem;
+    margin-right: 2rem;
 }
