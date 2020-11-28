@@ -58,7 +58,32 @@
             "hTeam":{
               "teamId":"1",
               "score":{
-                "points":"28"
+                "points":"37"
+              }
+            }
+          },
+          {
+            "seasonYear":"2020",
+            "league":"standard",
+            "gameId":"0011800079",
+            "seasonStageId":"1",
+            "statusNum":"2",
+            "startTimeUTC":"2020-11-12T24:00:00.000Z",
+            "endTimeUTC":"",
+            "arena":"Rose Garden",
+            "city":"Oregon",
+            "country":"USA",
+            "infos":"Preseason",
+            "vTeam":{
+              "teamId":"17",
+              "score":{
+                "points":"96"
+              }
+            },
+            "hTeam":{
+              "teamId":"29",
+              "score":{
+                "points":"96"
               }
             }
           }

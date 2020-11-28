@@ -29,7 +29,7 @@ export default class Homepage extends Component {
           <div className='row'>
             <div className="col-3" >
 
-              <Live />
+              <Live all_data={this.props.all_data}/>
 
             </div>
             <div className="col-8" >

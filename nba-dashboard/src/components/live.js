@@ -72,6 +72,29 @@ getTeamsMappings = async () => {
 
 }
 
+colorScore = (score, status) => {
+  if(status === 'win'){return <h3 className='text-success'>{score}</h3>}
+  if(status === 'lose'){return <h3 className='text-danger'>{score}</h3>}
+  if(status === 'tie'){return <h3 className='text-warning'>{score}</h3>}
+}
+
+calcScores = (home_score, away_score) => {
+  let score_arr = [];
+  if(home_score > away_score){
+      score_arr.push(this.colorScore(home_score, 'win'));
+      score_arr.push(this.colorScore(away_score, 'lose'));
+  }
+  else if(home_score < away_score){
+      score_arr.push(this.colorScore(home_score, 'lose'));
+      score_arr.push(this.colorScore(away_score, 'win'));
+  }
+  else{
+      score_arr.push(this.colorScore(home_score, 'tie'));
+      score_arr.push(this.colorScore(away_score, 'tie'));
+  }
+  return score_arr;
+}
+
 
 load_data = () => {
   return(
@@ -119,8 +142,26 @@ load_data = () => {
            const awayTeamScore = item.vTeam.score.points;
            const homeTeamName = this.state.teamsMappings[homeTeamId];
            const awayTeamName = this.state.teamsMappings[awayTeamId];
+           const homeObj = this.props.all_data.team_stats.find(obj => {
+             return obj.fullName === homeTeamName
+           })
+           const awayObj = this.props.all_data.team_stats.find(obj => {
+            return obj.fullName === awayTeamName
+          })
+          const scoreColors = this.calcScores(homeTeamScore, awayTeamScore)
+          
             return (
             <div className="single_game" key={i}>
+
+              <div className='row' >
+                <div className='col-6'>
+                  <img className='img-fluid' src={homeObj.logo} alt={(homeTeamName+' logo')} width="80px" height="auto" />
+                </div>
+                <div className='col-6'>
+                  <img className='img-fluid' src={awayObj.logo} alt={(awayTeamName+' logo')} width="80px" height="auto" />
+                </div>
+              </div>
+
               <div className='row' >
                 <div className='col-6'>
                     <h4>{homeTeamName}</h4>
@@ -129,14 +170,14 @@ load_data = () => {
                   <h4>{awayTeamName}</h4>
                 </div>
               </div>
+
               <div className='row'>
                 <div className='col-6'>
-                <h3>{homeTeamScore}</h3>
+                  <h3>{scoreColors[0]}</h3>
                 </div>
                 <div className='col-6'>
-                <h3>{awayTeamScore}</h3>
+                  <h3>{scoreColors[1]}</h3>
                 </div>
-
               </div>
 
             </div>
