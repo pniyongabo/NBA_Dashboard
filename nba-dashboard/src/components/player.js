@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import {Doughnut} from 'react-chartjs-2';
 import Sidebar from './sidebar';
 import Header from './header';
 

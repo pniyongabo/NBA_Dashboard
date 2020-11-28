@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './live.css';
-// import {Doughnut} from 'react-chartjs-2';
-// require("dotenv").config();
 
 export default class Live extends Component {
  

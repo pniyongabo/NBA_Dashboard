@@ -33,7 +33,7 @@ export default class Teams extends Component {
             }
           }).then(response=>response.json())
             .then(json=>{
-            console.log(json);
+            // console.log(json);
             this.setState({data: json, isLoaded: true})
           }).catch(err=>{
             console.log(err);
