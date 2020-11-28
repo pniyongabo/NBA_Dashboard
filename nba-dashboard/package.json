@@ -9,6 +9,7 @@
     "bootstrap": "^4.5.3",
     "chart.js": "^2.9.4",
     "dotenv": "^8.2.0",
+    "mdbreact": "^4.27.0",
     "nba-color": "^1.4.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
