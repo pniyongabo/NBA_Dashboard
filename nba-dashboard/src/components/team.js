@@ -17,32 +17,30 @@ export default class Team extends Component {
   
   componentDidMount() {
       this.setState({ 
-        team: this.props.location.state.data, 
-        // teamCityForMapping: this.getTeamCityForMapping(this.props.location.state.data.city),
-        // teamShortName: this.props.match.params.id, 
+        team: this.props.location.state.data,  
         isLoaded: true
       })
   }
-  
-  // getTeamCityForMapping = (city) => {
-  //     if (city === "LA") {
-  //       return "L.A. Clippers";
-  //     } else if (city === "Los Angeles") {
-  //       return "L.A. Lakers";
-  //     } else {
-  //       return city;
-  //     }
-  //  };
   
   getTeamData = (city) => {
     var all_teams_data = this.props.all_data;
     console.log(all_teams_data);
     var teamData = {};
+    var averageMetrics = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0];
     
     all_teams_data.team_stats.forEach(function (item) {
-      if (item.Team === city){
-        // create array for Label
-        // create array for data
+      
+      averageMetrics[0] += parseFloat(item["GP"]);
+      averageMetrics[1] += parseFloat(item["MPG"]);
+      averageMetrics[2] += parseFloat(item["FGM"]);
+      averageMetrics[3] += parseFloat(item["3PM"]);
+      averageMetrics[4] += parseFloat(item["PF"]);
+      averageMetrics[5] += parseFloat(item["RPG"]);
+      averageMetrics[6] += parseFloat(item["APG"]);
+      averageMetrics[7] += parseFloat(item["PPG"]);
+      
+      
+      if (item.city === city){
         const teamMetrics = [
           item["GP"],
           item["MPG"],
@@ -50,7 +48,7 @@ export default class Team extends Component {
           item["3PM"],
           item["PF"],
           item["RPG"],
-          item["APF"],
+          item["APG"],
           item["PPG"]          
         ];
         const teamLabels = [
@@ -60,17 +58,18 @@ export default class Team extends Component {
           all_teams_data.glossary["3PM"],
           all_teams_data.glossary["PF"],
           all_teams_data.glossary["RPG"],
-          all_teams_data.glossary["APF"],
+          all_teams_data.glossary["APG"],
           all_teams_data.glossary["PPG"]
         ];
         
-        teamData["metrics"] = teamMetrics;
+        teamData["teamMetrics"] = teamMetrics;
         teamData["labels"] = teamLabels;
       }
        
     });
-    delete teamData['#'];
-    delete teamData['Team'];
+    
+    console.log(averageMetrics);
+    teamData["averageMetrics"] = averageMetrics.map(x => (x/all_teams_data.team_stats.length).toFixed(2));
     console.log(teamData);
     return teamData;
    };
@@ -80,9 +79,20 @@ export default class Team extends Component {
       const data = {
         datasets: [
           {
-            data: teamData.metrics,
+            data: teamData.averageMetrics,
             backgroundColor: "rgba(220,220,220,0.2)",
             pointBackgroundColor: "rgba(220,220,220,1)",
+            borderColor: "rgba(1220,220,220,0.5)",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            label: "Avg NBA Team",
+          },
+          {
+            data: teamData.teamMetrics,
+            backgroundColor: "rgba(9,112,84,0.2)",
+            pointBackgroundColor: "rgba(9,112,84,1)",
+            borderColor: "rgba(9,112,84,0.5)",
+            pointHighlightStroke: "rgba(9,112,84,1)",
+            label: this.state.team.fullName,
           },
         ],
         labels: teamData.labels,
@@ -130,12 +140,12 @@ export default class Team extends Component {
         <div>
         <img className="team-logo" src={this.state.team.logo} alt={teamLogoALT}/>
         </div>
-        <div>
+        <div className="team-info">
            <h1>{this.state.team.fullName}</h1>
-           <p>ShortName: {this.state.team.shortName}</p>
-           <p>NickName: {this.state.team.nickname}</p>
-           <p>Conference: {this.state.team.leagues.standard.confName}</p>
-           <p>Divison: {this.state.team.leagues.standard.divName}</p>
+           <h5>Abbreviation: {this.state.team.shortName}</h5>
+           <h5>Nickname: {this.state.team.nickname}</h5>
+           <h5>Conference: {this.state.team.leagues.standard.confName}</h5>
+           <h5>Divison: {this.state.team.leagues.standard.divName}</h5>
         </div>
       </div>
        )

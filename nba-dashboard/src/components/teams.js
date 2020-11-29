@@ -47,36 +47,6 @@ export default class Teams extends Component {
 
 load_data = () => {
   return(
-      //  <table className="large-tables" id="teams">
-      //    <thead>
-      //       <tr>
-      //          <th>Name</th> 
-      //          <th>Abbr</th>
-      //          <th>Division</th>
-      //          <th>Conference</th>
-      //       </tr>
-      //    </thead>
-      //    <tbody>
-      //    {this.state.data.api.teams.map((item, i) => {
-      //      if (item.nbaFranchise === "1" && item.city !== "Home" && item.city !== "Away"){ // only dispaly NBA Teams
-      //       return (
-      //       <tr key={i}>
-      //         <td><Link to={{
-      //           pathname: '/teams/teamId/' + item.teamId,
-      //           state: {
-      //             data: item
-      //           }
-      //         }}> {item.fullName} </Link></td>
-      //         <td>{item.shortName}</td>
-      //         <td>{item.leagues.standard.divName}</td>
-      //         <td>{item.leagues.standard.confName}</td>
-      //       </tr>
-      //       )
-      //    }
-      //  })}
-      //    </tbody>
-      //  </table>
-      //////////////////////////////////////////////////////////////////////
 
       <div className='container'>
         <div className='d-flex flex-wrap justify-content-around'>
