@@ -16,11 +16,11 @@ var helperDataController = require('./helperDataController');
 //   res.send('Hello World!')
 // });
 
-app.use(express.static(path.join(__dirname, '../nba-dashboard/build')));
+app.use(express.static(path.join(__dirname, '/build')));
 
 app.get('/*', (req, res, next) => {
     if (!req.path.includes('api'))
-        res.sendFile(path.join(__dirname, '../nba-dashboard/build', 'index.html'));
+        res.sendFile(path.join(__dirname, '/build', 'index.html'));
     else next();
 });
 
