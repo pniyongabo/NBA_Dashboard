@@ -39,7 +39,7 @@ export default class Players extends Component {
       {"method": "GET",
        "headers":
        {
-        "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+        "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
         "x-rapidapi-key": process.env.REACT_APP_API_KEY,
         }
       });
@@ -56,7 +56,7 @@ export default class Players extends Component {
         {"method": "GET",
          "headers":
          {
-          "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+          "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
           "x-rapidapi-key": process.env.REACT_APP_API_KEY,
           }
         });
@@ -72,7 +72,6 @@ export default class Players extends Component {
   }
   
   goToPlayerPage = (id) => {
-    //let history = useHistory();
     window.location.assign('/players/playerId/'+id);
   }
   
@@ -85,13 +84,11 @@ export default class Players extends Component {
     console.log(rawData.api.players.length)
     const dataRows = rawData.api.players.map((item, i) => {
       var currentRow = {};
-      const playerURL = "/players/playerId/" + item.playerId;
+      // const playerURL = "/players/playerId/" + item.playerId;
       const playerName = item.firstName + " " + item.lastName;
       
       currentRow["id"] = item.playerId;
       currentRow["name"] = playerName;
-      //currentRow["link"] = '<a href="'+playerURL+'" >'+playerName+'</a>'
-      //currentRow["name"] = '<Link to={{ pathname: "/players/playerId/"' + item.playerId +', state: { data: ' +item +'} }}> {'+item.firstName + ' ' + item.lastName+'</Link>',
       currentRow["team"] = this.state.teamsMappings[item.teamId];
       currentRow["college"] = item.collegeName;
       currentRow["joined"] = item.startNba;
