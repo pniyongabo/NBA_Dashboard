@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Sidebar from './sidebar';
 import Header from './header';
+import './schedules.css'
 
 export default class Schedules extends Component {
  
@@ -54,6 +55,10 @@ load_data = () => {
          </thead>
          <tbody>
          {this.state.data.api.games.map((item, i) => {
+          //  let curr_status;
+          //  if(item.statusGame === 'Scheduled'){curr_status = <td style={{color: '#2048fa', fontWeight: 'bolder'}}>{item.statusGame}</td>}
+          //  else{curr_status = <td style={{color: 'black'}}>{item.statusGame}</td>}
+
            const homeTeamShortName = item.hTeam.shortName;
            const awayTeamShortName = item.vTeam.shortName;
            const homeTeamScore = item.hTeam.score.points;
@@ -71,14 +76,45 @@ load_data = () => {
             var localTime = formatter.format(new Date(item.startTimeUTC));
             // var currentTime = formatter.format(new Date()); console.log(currentTime, localTime);
 
+            // let temp_data = 
+            // <div>
+            //   <td>{awayTeamShortName} {awayTeamScore} - {homeTeamScore} {homeTeamShortName}</td>
+            //   <td>{item.statusGame}</td>
+            //   <td>{localTime}</td>
+            //   <td>{item.arena}</td>
+            //   <td>{item.city}</td>
+            // </div>
+
+            let curr_row;
+            if(item.statusGame === 'Scheduled'){
+              curr_row=
+              <tr key={i} className='scheduled'>
+                <td>{awayTeamShortName} {awayTeamScore} - {homeTeamScore} {homeTeamShortName}</td>
+                <td>{item.statusGame}</td>
+                <td>{localTime}</td>
+                <td>{item.arena}</td>
+                <td>{item.city}</td>
+              </tr>
+            }
+            else{
+              curr_row=
+              <tr key={i} className='finished'>
+                <td>{awayTeamShortName} {awayTeamScore} - {homeTeamScore} {homeTeamShortName}</td>
+                <td>{item.statusGame}</td>
+                <td>{localTime}</td>
+                <td>{item.arena}</td>
+                <td>{item.city}</td>
+              </tr>}
+
             return (
-            <tr key={i}>
-              <td>{awayTeamShortName} {awayTeamScore} - {homeTeamScore} {homeTeamShortName}</td>
-              <td>{item.statusGame}</td>
-              <td>{localTime}</td>
-              <td>{item.arena}</td>
-              <td>{item.city}</td>
-            </tr>
+              curr_row
+            // <tr key={i}>
+            //   <td>{awayTeamShortName} {awayTeamScore} - {homeTeamScore} {homeTeamShortName}</td>
+            //   <td>{item.statusGame}</td>
+            //   <td>{localTime}</td>
+            //   <td>{item.arena}</td>
+            //   <td>{item.city}</td>
+            // </tr>
             )
        })}
          </tbody>
@@ -105,7 +141,7 @@ load_data = () => {
             Schedules and Results
           </h1>
           <div class="row justify-content-center">
-            <div class="col-auto">
+            <div class="col-auto" style={{maxWidth: '90%'}}>
               {this.load_data(this.state.data)}
             </div>
           </div>

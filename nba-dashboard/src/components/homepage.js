@@ -21,12 +21,12 @@ export default class Homepage extends Component {
           <Header />
         
           <div className='row'>
-            <div className="col-2" >
+            <div className="col-xl-2 col-lg-2 col-md-6 col-sm-6 " >
 
               <Live all_data={this.props.all_data}/>
 
             </div>
-            <div className="col-9" >
+            <div className="col-xl-9 col-lg-9 col-md-11 col-sm-11" >
 
               <Tabs className='tabs' defaultActiveKey="ppg" id="uncontrolled-tab-example" >
 

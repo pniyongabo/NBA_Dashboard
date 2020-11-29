@@ -167,7 +167,7 @@ export default class Team extends Component {
     return (
         <div>
         <Header />
-        <div className='container align-center'>
+        <div className='align-center'>
           <div className='row'>
             <div className='col-12 col-sm-12 col-md-12 col-lg-4'>
               {this.load_data(this.state.data)}
@@ -176,7 +176,7 @@ export default class Team extends Component {
               {this.load_graph(this.props.allData)}
             </div>
           </div>
-          </div>
+        </div>
         <Sidebar />
         </div>
     );

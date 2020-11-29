@@ -72,9 +72,9 @@ getTeamsMappings = async () => {
 }
 
 colorScore = (score, status) => {
-  if(status === 'win'){return <h3 className='text-success' style={{fontSize:"1.4vw"}}>{score}</h3>}
-  if(status === 'lose'){return <h3 className='text-danger' style={{fontSize:"1.4vw"}}>{score}</h3>}
-  if(status === 'tie'){return <h3 className='text-warning' style={{fontSize:"1.4vw"}}>{score}</h3>}
+  if(status === 'win'){return <h3 className='text-success' style={{fontSize:"1.4vw", backgroundColor: 'black', border: '2px solid gray'}}>{score}</h3>}
+  if(status === 'lose'){return <h3 className='text-danger' style={{fontSize:"1.4vw", backgroundColor: 'black', border: '2px solid gray'}}>{score}</h3>}
+  if(status === 'tie'){return <h3 className='text-warning' style={{fontSize:"1.4vw", backgroundColor: 'black', border: '2px solid gray'}}>{score}</h3>}
 }
 
 calcScores = (home_score, away_score) => {

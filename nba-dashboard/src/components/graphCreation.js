@@ -25,7 +25,7 @@ const CustomTooltip = ({ active, payload, label, glossary, all_data, all_needed_
     } else if (type === 'singlebar'){
       return(
         <div>
-          <p>{`Win Percentage: ${payload[0].value} `}</p>
+          <p>{`Win Percentage: ${(payload[0].value * 100).toFixed(1)}% `}</p>
           <p>{`Rank in Conference: ${team.conference.rank} `}</p>
         </div>
       )
@@ -39,7 +39,7 @@ const CustomTooltip = ({ active, payload, label, glossary, all_data, all_needed_
 
   if (active) {
     return (
-      <div className="custom-tooltip" style={{backgroundColor: 'whitesmoke', padding: "10px", borderRadius: "5px"}}>
+      <div className="custom-tooltip" style={{backgroundColor: '#f5f5f5ee', padding: "10px", borderRadius: "5px"}}>
         <h5 className="label">{`${label}`} 
           <img className="img-fluid" src={team.logo} alt="teamlogo" style={{width: 70, height: 'auto', marginLeft: '1rem'}}/>
         </h5>

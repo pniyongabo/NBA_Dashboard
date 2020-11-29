@@ -1,0 +1,9 @@
+.scheduled {
+    background-color: #fa4c20 !important;
+    color: black;
+}
+
+.finished {
+    background-color:#fab920;
+    color: black;
+}

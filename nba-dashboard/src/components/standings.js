@@ -84,6 +84,8 @@ load_data = (standings) => {
   // console.log(sortedStandings);
   // console.log(this.props.all_data);
 
+  //format the data to use with recharts library
+  //this puts all the previous available data from the homepage onto the standings data
   let comp_data = sortedStandings;
   comp_data.forEach(new_stats => {
     let found_teamid = this.props.all_data.team_stats.find(e => {
@@ -91,7 +93,6 @@ load_data = (standings) => {
       return false;
     })
     if(found_teamid !== undefined){
-      // old_stats['standings'] = found_teamid;
       for(const property in found_teamid) {
         new_stats[property] = found_teamid[property];
       }
