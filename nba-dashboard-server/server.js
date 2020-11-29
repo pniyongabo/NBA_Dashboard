@@ -84,7 +84,7 @@ app.get('/games/live', mockDataController.getLiveGames);
 
 app.get('/games/league/standard/2019', mockDataController.getSchedulesAndResults);
 
-app.get('/standings/league/standard/2019', mockDataController.getStandings);
+app.get('/standings/standard/2019', mockDataController.getStandings);
 
 app.get('/players/playerId/216', mockDataController.getPlayerById);
 

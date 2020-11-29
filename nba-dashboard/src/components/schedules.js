@@ -15,17 +15,15 @@ export default class Schedules extends Component {
 
   componentDidMount(){
 
-    // const url = 'https://api-nba-v1.p.rapidapi.com/games/league/standard/2019';
-    const url = 'http://localhost:8000/games/league/standard/2019';
+    const url = 'https://api-nba-v1.p.rapidapi.com/games/league/standard/2019';
+    //const url = 'http://localhost:8000/games/league/standard/2019';
 
-
-    // async function that gets teams list and header info from api
     let loadResponse = async () => {
-        let response = await fetch(url, 
+        await fetch(url, 
           {"method": "GET",
            "headers":
            {
-            "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+            "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
             "x-rapidapi-key": process.env.REACT_APP_API_KEY,
             }
           }).then(response=>response.json())

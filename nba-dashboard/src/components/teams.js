@@ -18,17 +18,15 @@ export default class Teams extends Component {
 
   componentDidMount(){
 
-    // const url = 'https://api-nba-v1.p.rapidapi.com/teams/league/standard';
-    const url = 'http://localhost:8000/teams/league/standard';
+    const url = 'https://api-nba-v1.p.rapidapi.com/teams/league/standard';
+    // const url = 'http://localhost:8000/teams/league/standard';
 
-
-    // async function that gets teams list and header info from api
     let loadResponse = async () => {
-        let response = await fetch(url, 
+        await fetch(url, 
           {"method": "GET",
            "headers":
            {
-            "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+            "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
             "x-rapidapi-key": process.env.REACT_APP_API_KEY,
             }
           }).then(response=>response.json())
@@ -72,6 +70,8 @@ load_data = () => {
               
             </div>
             )
+          } else {
+            return (null)
           }
         })}
         </div>

@@ -32,13 +32,12 @@ export default class Player extends Component {
   }
   
   getPlayerDetails = async (id) => {
-      const playerId = "216"; // REMOVE BEFORE SUBMISSION
-      //const response = await fetch('https://api-nba-v1.p.rapidapi.com/players/playerId/' + id,
-      const response = await fetch('http://localhost:8000/players/playerId/' + playerId, 
+      const response = await fetch('https://api-nba-v1.p.rapidapi.com/players/playerId/' + id,
+      // const response = await fetch('http://localhost:8000/players/playerId/216', 
         {"method": "GET",
          "headers":
          {
-          "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+          "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
           "x-rapidapi-key": process.env.REACT_APP_API_KEY,
           }
         });
@@ -58,7 +57,7 @@ export default class Player extends Component {
         {"method": "GET",
          "headers":
          {
-          "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+          "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
           "x-rapidapi-key": process.env.REACT_APP_API_KEY,
           }
         });

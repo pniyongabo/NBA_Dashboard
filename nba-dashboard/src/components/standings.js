@@ -36,12 +36,12 @@ export default class Standing extends Component {
 
 
 getStandings = async () => {
-    // direct url: 'https://api-nba-v1.p.rapidapi.com/standings/league/standard/2019';
-    const response = await fetch('http://localhost:8000/standings/league/standard/2019', 
+    const response = await fetch('https://api-nba-v1.p.rapidapi.com/standings/standard/2019',
+    // const response = await fetch('http://localhost:8000/standings/standard/2019', 
       {"method": "GET",
        "headers":
        {
-        "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+        "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
         "x-rapidapi-key": process.env.REACT_APP_API_KEY,
         }
       });
@@ -57,12 +57,11 @@ getStandings = async () => {
 }
 
 getTeamsMappings = async () => {
-    // direct url: 'https://api-nba-v1.p.rapidapi.com/games/live';
     const response = await fetch('http://localhost:8000/teams/mappings', 
       {"method": "GET",
        "headers":
        {
-        "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+        "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
         "x-rapidapi-key": process.env.REACT_APP_API_KEY,
         }
       });

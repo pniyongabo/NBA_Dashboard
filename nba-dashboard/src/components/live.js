@@ -32,12 +32,11 @@ export default class Live extends Component {
 
 
 getLiveGames = async () => {
-    // direct url: 'https://api-nba-v1.p.rapidapi.com/games/live';
     const response = await fetch('http://localhost:8000/games/live', 
       {"method": "GET",
        "headers":
        {
-        "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+        "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
         "x-rapidapi-key": process.env.REACT_APP_API_KEY,
         }
       });
@@ -57,7 +56,7 @@ getTeamsMappings = async () => {
       {"method": "GET",
        "headers":
        {
-        "x-rapidapi-host": process.env.REACT_APP_NONFREE_API_URL,
+        "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
         "x-rapidapi-key": process.env.REACT_APP_API_KEY,
         }
       });
@@ -98,33 +97,6 @@ calcScores = (home_score, away_score) => {
 
 load_data = () => {
   return(
-      //  <table className="large-tables" id="liveGames">
-      //    <thead>
-      //       <tr>
-      //          <th>Current Score</th>
-      //          <th>Arena</th>
-      //          <th>City</th>
-      //       </tr>
-      //    </thead>
-      //    <tbody>
-      //    {this.state.liveGames.api.games.map((item, i) => {
-      //      const homeTeamId = item.hTeam.teamId;
-      //      const awayTeamId = item.vTeam.teamId;
-      //      const homeTeamScore = item.hTeam.score.points;
-      //      const awayTeamScore = item.vTeam.score.points;
-      //      const homeTeamName = this.state.teamsMappings[homeTeamId];
-      //      const awayTeamName = this.state.teamsMappings[awayTeamId];
-      //       return (
-      //       <tr key={i}>
-      //         <td>{awayTeamName} {awayTeamScore} - {homeTeamScore} {homeTeamName}</td>
-      //         <td>{item.arena}</td>
-      //         <td>{item.city}</td>
-      //       </tr>
-      //       )
-      //  })}
-      //    </tbody>
-      //  </table>
-////////////////////////////////////////////////////////////////////////////////////////////
         <div className="container live_games" id="liveGames">
           <div className='row header' >
             <div className='col-6 '>
