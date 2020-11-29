@@ -10,8 +10,8 @@ A class project for the CS 410P/510: Front-End Web Tech (Fall 2020) at Porland S
 
 ### Instructions for Running the Application
 
-This application makes calls to a protected external API (RapidAPI). 
-For the application to work a RapidAPI key is required in the path as `REACT_APP_API_KEY`.
+This application makes calls to external API (RapidAPI) that requires a key. 
+For the application to work, that API key needs to be present as path variable named `REACT_APP_API_KEY`.
 
 ##### Running the Express Server
 

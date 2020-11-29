@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Sidebar from './sidebar';
 import Header from './header';
 
+import './player.css';
 
 export default class Player extends Component {
   
@@ -72,37 +73,23 @@ export default class Player extends Component {
 
   }
   
-  // getTeamFullName = async (teamId) => {
-  //   const response = await fetch('http://localhost:8000/teams/mappings/' + teamId);
-  //   const body = await response.text();
-  // 
-  //   if (response.status !== 200) {
-  //     return ""; 
-  //   }
-  // 
-  //   return body;
-  // };
-  
-
-  
   load_data = () => {
     const playerImageURL = "https://nba-players.herokuapp.com/players/" + this.state.playerDetails.lastName + "/" + this.state.playerDetails.firstName;
-    const playerImageALT = "Headshot image of Nba Player " + this.state.playerDetails.lastName + " " + this.state.playerDetails.firstName;
+    const playerImageALT = "Headshot image of Nba Player " + this.state.playerDetails.firstName + " " + this.state.playerDetails.lastName;
     return(
       <div>
         <div>
         <img src={playerImageURL} alt={playerImageALT}/>
         </div>
-        <div>
+        <div className="player-info">
            <h1>{this.state.playerDetails.firstName} {this.state.playerDetails.lastName}</h1>
            <h5>{this.state.teamsMappings[this.state.playerDetails.teamId]} | No. {this.state.playerDetails.leagues.standard.jersey}</h5>
-           <p>Weight (kg) : {this.state.playerDetails.weightInKilograms}</p>
-           <p>Height (m): {this.state.playerDetails.heightInMeters}</p>
-           <p>Born: {this.state.playerDetails.dateOfBirth}</p>
-           <p>College Team: {this.state.playerDetails.collegeName}</p>
-           <p>Born: {this.state.playerDetails.dateOfBirth}</p>
-           <p>Position: {this.state.playerDetails.leagues.standard.position}</p>
-           <p>Affiliation: {this.state.playerDetails.affiliation}</p>
+           <h6>Weight (kg): {this.state.playerDetails.weightInKilograms}</h6>
+           <h6>Height (m): {this.state.playerDetails.heightInMeters}</h6>
+           <h6>Birthdate: {this.state.playerDetails.dateOfBirth}</h6>
+           <h6>College Team: {this.state.playerDetails.collegeName}</h6>
+           <h6>Affiliation: {this.state.playerDetails.affiliation}</h6>
+           <h6>Position: {this.state.playerDetails.leagues.standard.position}</h6>
         </div>
       </div>
        )
