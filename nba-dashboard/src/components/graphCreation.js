@@ -58,83 +58,71 @@ function processGraph(all_data, all_team_data, team_mappings, type_of_graph, sta
   if(type_of_graph === "doublebar"){
     let stats=stat_to_graph.split(" ");
     return(
-      <BarChart
-        width={1300}
-        height={600}
-        data={all_team_data.team_stats}
-      >
-        {/* <XAxis type="category" dataKey={"city"} tickLine={false} /> */}
-        <XAxis type="category" interval={0} dataKey={"fullName"} xAxisId={0} tickLine={false} hide/>
-
-        <XAxis type="category" dataKey={"fullName"} xAxisId={1} tickLine={false} hide/>
-
-        {/* <YAxis domain={[dataMin => ((Math.floor(dataMin)-1)), dataMax => (Math.ceil(dataMax))]} /> */}
-        {/* <YAxis domain={['dataMin', 'dataMax']} /> */}
-        <YAxis interval="preserveStartEnd" />
-
-        <Tooltip content={<CustomTooltip glossary={all_team_data.glossary} all_data={all_team_data.team_stats} all_needed_stats={stats} type={type_of_graph}/>} animationEasing="ease-in-out" />
-        {/* <Tooltip /> */}
-        {/* <Legend /> */}
-        <CartesianGrid />
-
-        <Bar dataKey={stats[0]} 
-          animationDuration={2000}
-          barSize={20}
-          barGap={0}
-          xAxisId={0}
-          isAnimationActive={false}
+      <ResponsiveContainer width={"97%"} height={600}>
+        <BarChart
+          data={all_team_data.team_stats}
         >
-        {
-          all_team_data.team_stats.map((entry, index) => {
-            //sets the background color of each bar to the main team color, and secondary color to font and border color
-            return <Cell fill={getMainColor(entry.shortName).hex} stroke={"black"} key={index}/>;
-          })
-        }
-          <LabelList dataKey="shortName" position='top' />
-        </Bar>
+          <XAxis type="category" interval={0} dataKey={"fullName"} xAxisId={0} tickLine={false} hide/>
+          <XAxis type="category" dataKey={"fullName"} xAxisId={1} tickLine={false} hide/>
+          <YAxis interval="preserveStartEnd" />
+          <Tooltip content={<CustomTooltip glossary={all_team_data.glossary} all_data={all_team_data.team_stats} all_needed_stats={stats} type={type_of_graph}/>} animationEasing="ease-in-out" />
+          <CartesianGrid />
+          <Bar dataKey={stats[0]} 
+            animationDuration={2000}
+            barSize={20}
+            barGap={0}
+            xAxisId={0}
+          >
+          {
+            all_team_data.team_stats.map((entry, index) => {
+              //sets the background color of each bar to the main team color, and secondary color to font and border color
+              return <Cell fill={getMainColor(entry.shortName).hex} stroke={"black"} key={index}/>;
+            })
+          }
+            <LabelList dataKey="shortName" position='top' />
+          </Bar>
 
-        <Bar dataKey={stats[1]}
-          animationDuration={2000}
-          barSize={20}
-          barGap={0}
-          xAxisId={1}
-        >
-        {
-          all_team_data.team_stats.map((entry, index) => {
-            //sets the background color of each bar to the main team color, and secondary color to font and border color
-            return <Cell fill={getSecondaryColor(entry.shortName).hex} stroke={"black"} key={index}/>;
-          })
-        }
-          {/* <LabelList dataKey="shortName" /> */}
-        </Bar>
-      </BarChart>
+          <Bar dataKey={stats[1]}
+            animationDuration={2000}
+            barSize={20}
+            barGap={0}
+            xAxisId={1}
+          >
+          {
+            all_team_data.team_stats.map((entry, index) => {
+              //sets the background color of each bar to the main team color, and secondary color to font and border color
+              return <Cell fill={getSecondaryColor(entry.shortName).hex} stroke={"black"} key={index}/>;
+            })
+          }
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
     );
   }
 
   if(type_of_graph === "bar"){
     return(
-      <BarChart
-        width={1300}
-        height={600}
-        data={all_team_data.team_stats}
-      >
-        <XAxis type="category" dataKey={"fullName"} tickLine={false} hide/>
-        <YAxis interval="preserveStartEnd" />
-        <CartesianGrid />
-        <Tooltip content={<CustomTooltip glossary={all_team_data.glossary} all_data={all_team_data.team_stats} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />
-        <Bar dataKey={stat_to_graph} 
-        animationDuration={2000}
-
+      <ResponsiveContainer width={"97%"} height={600}>
+        <BarChart
+          data={all_team_data.team_stats}
         >
-        {
-          all_team_data.team_stats.map((entry, index) => {
-            //sets the background color of each bar to the main team color, and secondary color to font and border color
-            return <Cell fill={getMainColor(entry.shortName).hex} stroke={getSecondaryColor(entry.shortName).hex} key={index}/>;
-          })
-        }
-          <LabelList dataKey="shortName" />
-        </Bar>
-      </BarChart>
+          <XAxis type="category" dataKey={"fullName"} tickLine={false} hide/>
+          <YAxis interval="preserveStartEnd" />
+          <CartesianGrid />
+          <Tooltip content={<CustomTooltip glossary={all_team_data.glossary} all_data={all_team_data.team_stats} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />
+          <Bar dataKey={stat_to_graph} 
+          animationDuration={2000}
+          >
+          {
+            all_team_data.team_stats.map((entry, index) => {
+              //sets the background color of each bar to the main team color, and secondary color to font and border color
+              return <Cell fill={getMainColor(entry.shortName).hex} stroke={getSecondaryColor(entry.shortName).hex} key={index}/>;
+            })
+          }
+            <LabelList dataKey="shortName" />
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
     );
   }
 

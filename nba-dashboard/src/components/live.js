@@ -73,9 +73,9 @@ getTeamsMappings = async () => {
 }
 
 colorScore = (score, status) => {
-  if(status === 'win'){return <h3 className='text-success'>{score}</h3>}
-  if(status === 'lose'){return <h3 className='text-danger'>{score}</h3>}
-  if(status === 'tie'){return <h3 className='text-warning'>{score}</h3>}
+  if(status === 'win'){return <h3 className='text-success' style={{fontSize:"1.4vw"}}>{score}</h3>}
+  if(status === 'lose'){return <h3 className='text-danger' style={{fontSize:"1.4vw"}}>{score}</h3>}
+  if(status === 'tie'){return <h3 className='text-warning' style={{fontSize:"1.4vw"}}>{score}</h3>}
 }
 
 calcScores = (home_score, away_score) => {
@@ -128,10 +128,10 @@ load_data = () => {
         <div className="container live_games" id="liveGames">
           <div className='row header' >
             <div className='col-6 '>
-                <h4>HOME</h4>
+                <h4 style={{fontSize:"1.5vw"}}>HOME</h4>
             </div>
             <div className='col-6 '>
-              <h4>AWAY</h4>
+              <h4 style={{fontSize:"1.5vw"}}>AWAY</h4>
             </div>
           </div>
 
@@ -164,10 +164,10 @@ load_data = () => {
 
               <div className='row' >
                 <div className='col-6'>
-                    <h4>{homeTeamName}</h4>
+                    <h4 style={{fontSize:"1.1vw"}}>{homeTeamName}</h4>
                 </div>
                 <div className='col-6'>
-                  <h4>{awayTeamName}</h4>
+                  <h4 style={{fontSize:"1.1vw"}}>{awayTeamName}</h4>
                 </div>
               </div>
 
@@ -203,7 +203,7 @@ load_data = () => {
 
     return (
       <div className="align-center live_box">
-          <h1>
+          <h1 style={{fontSize:"2vw"}}>
             Live Games 
             <nobr className="reddot">🔴</nobr>
           </h1>    
