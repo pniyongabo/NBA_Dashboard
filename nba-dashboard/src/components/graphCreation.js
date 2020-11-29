@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getMainColor, getFullName, getSecondaryColor } from 'nba-color';
 import {
-  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, Label
+  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, Label, ResponsiveContainer
 } from 'recharts';
 
 
@@ -117,22 +117,13 @@ function processGraph(all_data, all_team_data, team_mappings, type_of_graph, sta
         width={1300}
         height={600}
         data={all_team_data.team_stats}
-        
       >
-        {/* <XAxis type="category" dataKey={"city"} tickLine={false} /> */}
         <XAxis type="category" dataKey={"fullName"} tickLine={false} hide/>
-
-        {/* <YAxis interval="preserveStartEnd" domain={[dataMin => ((Math.floor(dataMin)-1)), dataMax => (Math.ceil(dataMax))]} /> */}
-        {/* <YAxis domain={['dataMin', 'dataMax']} /> */}
         <YAxis interval="preserveStartEnd" />
-
         <CartesianGrid />
-
-        {/* <Tooltip /> */}
         <Tooltip content={<CustomTooltip glossary={all_team_data.glossary} all_data={all_team_data.team_stats} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />
         <Bar dataKey={stat_to_graph} 
         animationDuration={2000}
-        // isAnimationActive={false}
 
         >
         {
@@ -148,59 +139,38 @@ function processGraph(all_data, all_team_data, team_mappings, type_of_graph, sta
   }
 
   if(type_of_graph === "singlebar"){
-    let window_width = window.innerWidth;
-    let window_height = window.innerHeight;
     return(
-      <BarChart
-        width={(window_width/2)-100}
-        height={window_height/1.5}
-        data={all_team_data}
-        
-      >
-        {/* <XAxis type="category" dataKey={"city"} tickLine={false} /> */}
-        <XAxis type="category" dataKey={'fullName'} tickLine={false} hide/>
-
-        {/* <YAxis interval="preserveStartEnd" domain={[dataMin => ((Math.floor(dataMin)-1)), dataMax => (Math.ceil(dataMax))]} /> */}
-        {/* <YAxis domain={['dataMin', 'dataMax']} /> */}
-        <YAxis interval="preserveStartEnd" />
-
-        <CartesianGrid />
-
-        <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />
-        <Bar dataKey={stat_to_graph} 
-        animationDuration={2000}
-        // isAnimationActive={false}
-
+      <ResponsiveContainer width={"80%"} height={500}>
+        <BarChart
+          data={all_team_data}
         >
-        {
-          all_team_data.map((entry, index) => {
-            //sets the background color of each bar to the main team color, and secondary color to font and border color
-            return <Cell key={index} fill={getMainColor(entry.shortName).hex} stroke={getSecondaryColor(entry.shortName).hex} />;
-          })
-        }
-
-        <LabelList dataKey="shortName" />
-        </Bar>
-      </BarChart>
+          <XAxis type="category" dataKey={'fullName'} tickLine={false} hide/>
+          <YAxis interval="preserveStartEnd" />
+          <CartesianGrid />
+          <Tooltip content={<CustomTooltip all_data={all_team_data} all_needed_stats={stat_to_graph} type={type_of_graph}/>} animationEasing="ease-in-out" />
+          <Bar dataKey={stat_to_graph} 
+          animationDuration={2000}
+          >
+          {
+            all_team_data.map((entry, index) => {
+              //sets the background color of each bar to the main team color, and secondary color to font and border color
+              return <Cell key={index} fill={getMainColor(entry.shortName).hex} stroke={getSecondaryColor(entry.shortName).hex} />;
+            })
+          }
+          <LabelList dataKey="shortName" />
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
     );
   }
 
 }
 
-
 export default class GraphCreation extends Component {
-
-
-
-
-  
 
     render() {
         return(
-            
-
           processGraph(this.props.all_data, this.props.all_team_data, this.props.team_mappings, this.props.type_of_graph, this.props.stat_to_graph)
-
         )
     }
 
