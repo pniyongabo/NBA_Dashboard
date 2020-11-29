@@ -131,11 +131,11 @@ load_data = (standings) => {
           
           <div className='container'>
             <div className='row'>
-              <div className='col-12 col-sm-12 col-md-12 col-lg-6'>
+              <div className='col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6'>
                 <h3>East Conference Standings</h3>
                 {this.load_data(this.state.standingsEast)}
               </div>
-              <div className='col-12 col-sm-12 col-md-12 col-lg-6'>
+              <div className='col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6'>
                 <h3>West Conference Standings</h3>
                 {this.load_data(this.state.standingsWest)}
               </div>
