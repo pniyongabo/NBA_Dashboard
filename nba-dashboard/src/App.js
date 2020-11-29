@@ -29,7 +29,7 @@ export default class App extends Component {
 
   componentDidMount(){
     let loadResponse = async () => {
-      await fetch("/team_stats")
+      await fetch("http://localhost:8000/api/team_stats")
       .then((res) => res.json())
       .then((team_data) => {
 
@@ -49,7 +49,15 @@ export default class App extends Component {
     })
       .catch((err) => console.log("Request failed", err));
 
-    await fetch("/teams/league/standard")
+    // await fetch("http://localhost:8000/api/teams/league/standard")
+    await fetch("https://api-nba-v1.p.rapidapi.com/teams/league/standard",
+      {"method": "GET",
+       "headers":
+       {
+        "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
+        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+        }
+      })
       .then((res) => res.json())
       .then((team_names) => {
         let temp_data = this.state.data;
@@ -73,7 +81,7 @@ export default class App extends Component {
         this.setState({ isLoaded: true, data: temp_data })
       })
 
-    }
+    };
     loadResponse();
   }
   

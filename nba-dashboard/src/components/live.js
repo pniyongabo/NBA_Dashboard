@@ -32,7 +32,7 @@ export default class Live extends Component {
 
 
 getLiveGames = async () => {
-    const response = await fetch('http://localhost:8000/games/live', 
+    const response = await fetch('http://localhost:8000/api/games/live', 
       {"method": "GET",
        "headers":
        {
@@ -52,7 +52,7 @@ getLiveGames = async () => {
 }
 
 getTeamsMappings = async () => {
-    const response = await fetch('http://localhost:8000/teams/mappings', 
+    const response = await fetch('http://localhost:8000/api/teams/mappings', 
       {"method": "GET",
        "headers":
        {

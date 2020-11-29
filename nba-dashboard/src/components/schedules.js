@@ -17,7 +17,7 @@ export default class Schedules extends Component {
   componentDidMount(){
 
     const url = 'https://api-nba-v1.p.rapidapi.com/games/league/standard/2019';
-    //const url = 'http://localhost:8000/games/league/standard/2019';
+    //const url = 'http://localhost:8000/api/games/league/standard/2019';
 
     let loadResponse = async () => {
         await fetch(url, 

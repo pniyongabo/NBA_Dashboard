@@ -37,7 +37,7 @@ export default class Standing extends Component {
 
 getStandings = async () => {
     const response = await fetch('https://api-nba-v1.p.rapidapi.com/standings/standard/2019',
-    // const response = await fetch('http://localhost:8000/standings/standard/2019', 
+    // const response = await fetch('http://localhost:8000/api/standings/standard/2019', 
       {"method": "GET",
        "headers":
        {
@@ -57,7 +57,7 @@ getStandings = async () => {
 }
 
 getTeamsMappings = async () => {
-    const response = await fetch('http://localhost:8000/teams/mappings', 
+    const response = await fetch('http://localhost:8000/api/teams/mappings', 
       {"method": "GET",
        "headers":
        {

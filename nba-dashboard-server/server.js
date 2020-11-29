@@ -1,7 +1,7 @@
 const express = require('express')
 const fetch = require('node-fetch');
 const cheerio = require("cheerio");
-// const path = require("path");
+const path = require("path");
 cors = require('cors');
 
 const app = express();
@@ -12,11 +12,19 @@ app.use(cors());
 var mockDataController = require('./mockDataController');
 var helperDataController = require('./helperDataController');
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// });
+
+app.use(express.static(path.join(__dirname, '../nba-dashboard/build')));
+
+app.get('/*', (req, res, next) => {
+    if (!req.path.includes('api'))
+        res.sendFile(path.join(__dirname, '../nba-dashboard/build', 'index.html'));
+    else next();
 });
 
-app.get('/team_stats', (req, res) => {
+app.get('/api/team_stats', (req, res) => {
 
   fetch('https://basketball.realgm.com/nba/team-stats')
     .then((res)=>res.text())
@@ -74,21 +82,21 @@ app.get('/team_stats', (req, res) => {
     
 }); 
 
-app.get('/teams/league/standard', mockDataController.getTeamsLeagueStandard);
+app.get('/api/teams/league/standard', mockDataController.getTeamsLeagueStandard);
 
-app.get('/players/league/standard', mockDataController.getPlayersLeagueStandard);
+app.get('/api/players/league/standard', mockDataController.getPlayersLeagueStandard);
 
-app.get('/teams/mappings', mockDataController.getTeamsMappings);
+app.get('/api/teams/mappings', mockDataController.getTeamsMappings);
 
-app.get('/games/live', mockDataController.getLiveGames);
+app.get('/api/games/live', mockDataController.getLiveGames);
 
-app.get('/games/league/standard/2019', mockDataController.getSchedulesAndResults);
+app.get('/api/games/league/standard/2019', mockDataController.getSchedulesAndResults);
 
-app.get('/standings/standard/2019', mockDataController.getStandings);
+app.get('/api/standings/standard/2019', mockDataController.getStandings);
 
-app.get('/players/playerId/216', mockDataController.getPlayerById);
+app.get('/api/players/playerId/216', mockDataController.getPlayerById);
 
-app.get('/teams/mappings/:teamId', function (req, res) {
+app.get('/api/teams/mappings/:teamId', function (req, res) {
     return res.send(helperDataController.getTeamFullName(req.params.teamId));
 });
 

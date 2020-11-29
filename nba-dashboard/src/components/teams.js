@@ -19,7 +19,7 @@ export default class Teams extends Component {
   componentDidMount(){
 
     const url = 'https://api-nba-v1.p.rapidapi.com/teams/league/standard';
-    // const url = 'http://localhost:8000/teams/league/standard';
+    // const url = 'http://localhost:8000/api/teams/league/standard';
 
     let loadResponse = async () => {
         await fetch(url, 

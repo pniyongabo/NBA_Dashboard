@@ -34,8 +34,8 @@ export default class Players extends Component {
   
 
   getAllPlayers = async () => {
-    const response = await fetch('http://localhost:8000/players/league/standard', 
-    //const response = await fetch('https://api-nba-v1.p.rapidapi.com/players/league/standard',
+    // const response = await fetch('http://localhost:8000/api/players/league/standard', 
+    const response = await fetch('https://api-nba-v1.p.rapidapi.com/players/league/standard',
       {"method": "GET",
        "headers":
        {
@@ -52,7 +52,7 @@ export default class Players extends Component {
   };
   
   getTeamsMappings = async () => {
-      const response = await fetch('http://localhost:8000/teams/mappings', 
+      const response = await fetch('http://localhost:8000/api/teams/mappings', 
         {"method": "GET",
          "headers":
          {
