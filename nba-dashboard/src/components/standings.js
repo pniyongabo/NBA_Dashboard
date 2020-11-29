@@ -81,8 +81,8 @@ load_data = (standings) => {
  
   
   const sortedStandings = standings.sort((a, b) => (parseInt(a.conference.rank) > parseInt(b.conference.rank)) ? 1 : -1);
-  console.log(sortedStandings);
-  console.log(this.props.all_data);
+  // console.log(sortedStandings);
+  // console.log(this.props.all_data);
 
   let comp_data = sortedStandings;
   comp_data.forEach(new_stats => {
@@ -97,7 +97,7 @@ load_data = (standings) => {
       }
     }
   })
-  console.log('final', comp_data);
+  // console.log('final', comp_data);
 
   
   return(
@@ -128,18 +128,16 @@ load_data = (standings) => {
             Standings
           </h1>
           
-          <div className='container'>
             <div className='row'>
-              <div className='col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6'>
+              <div className='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6'>
                 <h3>East Conference Standings</h3>
                 {this.load_data(this.state.standingsEast)}
               </div>
-              <div className='col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6'>
+              <div className='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6'>
                 <h3>West Conference Standings</h3>
                 {this.load_data(this.state.standingsWest)}
               </div>
             </div>
-          </div>
           <Sidebar />
       </div>
     );
