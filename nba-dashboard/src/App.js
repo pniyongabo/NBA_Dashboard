@@ -29,7 +29,7 @@ export default class App extends Component {
 
   componentDidMount(){
     let loadResponse = async () => {
-      await fetch("http://localhost:8000/api/team_stats")
+      await fetch("/api/team_stats")
       .then((res) => res.json())
       .then((team_data) => {
 
